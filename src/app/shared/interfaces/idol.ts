@@ -1,0 +1,26 @@
+import { Unit } from './unit';
+export interface Idol {
+    idolId: number,
+    idolName: string,
+    idolFirstName: string,
+    idolLastName: string,
+    hiragana: string,
+    nickName: string,
+    unitId: number,
+    age: number,
+    bloodType: string,
+    birthday: string,
+    starSign: string,
+    height: number,
+    weight: number,
+    threeSize: string,
+    usedHand: string,
+    interest: string,
+    specialSkill: string,
+    description: string,
+    birthPlace: string,
+    cv: string,
+    color1: string,
+    color2: string,
+    unit: Unit
+}

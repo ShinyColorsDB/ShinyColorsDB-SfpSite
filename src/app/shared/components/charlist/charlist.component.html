@@ -1,0 +1,40 @@
+<div *ngFor="let unit of units; let i = index;">
+  <button
+    class="btn w-100 text-start rounded-0"
+    ngClass="{ 'rounded-top': i == 0, 'rounded-bottom': i == units.length - 1}"
+    [style]="'background-color:' + unit.color1 + ';'"
+    (click)="unitCollapse.toggle()"
+    [attr.aria-expanded]="!this.getCollapseStatus(unit.unitId)">
+    <img
+      [src]="this.scUrlService.getUnitIconUrl(unit.unitId)"
+      width="30"
+      height="30"
+      [alt]="'Icon of unit ' + unit.unitName"
+      />
+    {{ unit.unitHiragana }}
+  </button>
+  <div
+    class="list-group"
+    [id]="'unit' + unit.unitId"
+    #unitCollapse="ngbCollapse"
+    [ngbCollapse]="this.getCollapseStatus(unit.unitId)">
+    <a
+      *ngFor="let idol of unit.idols"
+      class="ps-4 list-group-item-action list-group-item"
+      [ngClass]="{ active: this.currentIdolID === idol.idolId }"
+      routerLink="/idolinfo"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      [queryParams]="{ idolid: idol.idolId }"
+      (click)="this.onIdolClicked()">
+      <img
+        [src]="this.scUrlService.getSmallIdolIconUrl(idol.idolId)"
+        [alt]="'Icon of idol ' + idol.idolName"
+        width="40"
+        height="40"
+        class="d-inline-block align-items-center"
+        >
+      <div class="d-inline-block align-items-center ps-2 pe-2 idolItems">{{ idol.idolName }}</div>
+    </a>
+  </div>
+</div>

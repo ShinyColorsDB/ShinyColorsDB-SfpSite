@@ -1,0 +1,52 @@
+<div class="h-100">
+  <div class="d-flex justify-content-center">
+    <img src="/assets/283.png" width="233" height="233" alt="Icon of 283 production" class="img-fluid" ngClass="{'d-none': !isBigScreen}">
+  </div>
+  <div ngClass="{ active: showSideBar, sidebar: !isBigScreen }" class="h-100">
+    <div ngbAccordion>
+      <div ngbAccordionItem cardClass="p-0">
+        <div ngbAccordionHeader>
+          <button ngbAccordionButton>Song for Prism</button>
+        </div>
+        <div ngbAccordionCollapse>
+          <div class="list-group">
+            <a
+              class="text-start list-group-item list-group-item-action w-100 ps-4 bg-light bg-gradient"
+              routerLink='/'
+              (click)="onSideBarClick()" i18n>首頁</a>
+          </div>
+        </div>
+      </div>
+      <div ngbAccordionItem [id]="this.charaListId">
+        <div ngbAccordionHeader i18n>
+          <button ngbAccordionButton>角色列表</button>
+        </div>
+        <div ngbAccordionCollapse>
+          <app-charlist
+            (idolClicked)="onCharlistClick($event)"
+            [isBigScreen]="this.isBigScreen"></app-charlist>
+        </div>
+      </div>
+      <!--ngb-panel cardClass="mb-5">
+        <ng-template ngbPanelTitle i18n>其他小玩具</ng-template>
+        <ng-template ngbPanelContent>
+          <div class="list-group">
+            <a
+              href="https://spine.shinycolors.moe/"
+              class="text-start list-group-item list-group-item-action w-100 ps-4 bg-light bg-gradient"
+              target="_blank">
+              SpineViewer
+            </a>
+            <a
+              href="https://github.com/ShinyColorsDB/ShinyColorsDB-SfpSite"
+              class="text-start list-group-item list-group-item-action w-100 ps-4 bg-light bg-gradient"
+              target="_blank">
+              Github
+            </a>
+          </div>
+        </ng-template>
+      </ngb-panel-->
+    </div>
+    <!--app-settings></app-settings-->
+  </div>
+</div>
