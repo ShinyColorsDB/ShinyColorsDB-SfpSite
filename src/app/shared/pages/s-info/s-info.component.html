@@ -1,0 +1,35 @@
+<div class="row d-flex justify-content-center" *ngIf="this.cardInfo">
+    <h1 class="col-12">{{this.cardInfo.mlSupportCharaText_Name}} {{this.cardInfo.mlCharacterText_Name}}</h1>
+    <div class="col-xl-6 col-sm-12 container row justify-content-center">
+        <div class="col-12 justify-content-center">
+            <img [src]="this.getPictureUrl()" width="584" height="328" class="img-fluid">
+        </div>
+    </div>
+    <div class="col-xl-6 col-sm-12">
+        <h2>サポート効果</h2>
+        <ul class="list-group">
+            @for (item of this.cardInfo.supportEffectList; track $index) {
+                <li class="list-group-item">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>{{item.mlSupportEffectText_Name}}</th>
+                        </tr>
+                        <tr>
+                            <td>{{item.mlSupportEffectText_Description}}</td>
+                        </tr>
+                    </table>
+                </li>
+            }
+            <!--li *ngFor="let i of this.cardInfo.supportEffectList" class="list-group-item">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>{{i.mlSupportEffectText_Name}}</th>
+                    </tr>
+                    <tr>
+                        <td>{{i.mlSupportEffectText_Description}}</td>
+                    </tr>
+                </table>
+            </li-->
+        </ul>
+    </div>
+</div>

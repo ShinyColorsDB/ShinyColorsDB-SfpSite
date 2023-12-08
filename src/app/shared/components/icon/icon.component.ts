@@ -20,11 +20,16 @@ export class IconComponent implements AfterViewInit, OnChanges {
   @Input()
   idolInfo!: Idol;
 
+  @Input()
+  cardData!: {
+    "mstProduceIdolId": number,
+    "mlProduceIdolText_Name": string
+  }
+
   @ViewChild('IconCanvas')
   iconCanvas!: ElementRef<HTMLCanvasElement>;
 
   app!: Application;
-
 
   constructor(private scSfpUrlService: ShinyColorsSfpUrlService,) {
     Assets.setPreferences({ crossOrigin: 'anonymous', preferCreateImageBitmap: false });
@@ -42,7 +47,6 @@ export class IconComponent implements AfterViewInit, OnChanges {
     this.drawCanvas();
   }
 
-
   ngAfterViewInit(): void {
     if (!this.iconCanvas) {
       return;
@@ -52,7 +56,7 @@ export class IconComponent implements AfterViewInit, OnChanges {
       view: this.iconCanvas.nativeElement,
       width: 400,
       height: 400,
-      backgroundColor: "0xb3b3b3",
+      backgroundColor: 0xffffff,
       clearBeforeRender: true
     });
 
@@ -67,12 +71,9 @@ export class IconComponent implements AfterViewInit, OnChanges {
     this.app.stage.removeChildren();
 
     const icon = new Sprite(await Assets.load(`icon_${this.idolInfo.idolId}`));
-    const edge = new Sprite(await Assets.load('edge_default'));
-    edge.anchor.set(0.5);
     icon.anchor.set(0.5);
-    edge.position.set(this.app.screen.width / 2, this.app.screen.height / 2 + 60);
     icon.position.set(this.app.screen.width / 2, this.app.screen.height / 2);
 
-    this.app.stage.addChild(edge, icon);
+    this.app.stage.addChild(icon);
   }
 }

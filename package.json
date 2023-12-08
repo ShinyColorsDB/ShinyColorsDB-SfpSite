@@ -21,7 +21,7 @@
     "@angular/platform-server": "^17.0.0",
     "@angular/router": "^17.0.0",
     "@angular/ssr": "^17.0.1",
-    "@ng-bootstrap/ng-bootstrap": "^16.0.0-rc.2",
+    "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@nguniversal/express-engine": "^7.0.2",
     "@popperjs/core": "^2.11.8",
     "@types/css-font-loading-module": "^0.0.10",

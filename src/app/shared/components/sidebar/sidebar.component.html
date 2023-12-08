@@ -1,10 +1,10 @@
 <div class="h-100">
   <div class="d-flex justify-content-center">
-    <img src="/assets/283.png" width="233" height="233" alt="Icon of 283 production" class="img-fluid" ngClass="{'d-none': !isBigScreen}">
+    <img src="/assets/logo.png" width="881" height="338" alt="Icon of 283 production" class="img-fluid" ngClass="{'d-none': !isBigScreen}">
   </div>
   <div ngClass="{ active: showSideBar, sidebar: !isBigScreen }" class="h-100">
-    <div ngbAccordion>
-      <div ngbAccordionItem cardClass="p-0">
+    <div ngbAccordion class="mb-4">
+      <div ngbAccordionItem>
         <div ngbAccordionHeader>
           <button ngbAccordionButton>Song for Prism</button>
         </div>
@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div ngbAccordionItem [id]="this.charaListId">
+      <div ngbAccordionItem [id]="this.charaListId" [collapsed]="false">
         <div ngbAccordionHeader i18n>
           <button ngbAccordionButton>角色列表</button>
         </div>

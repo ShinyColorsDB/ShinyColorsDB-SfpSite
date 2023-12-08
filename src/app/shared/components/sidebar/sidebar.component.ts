@@ -25,7 +25,6 @@ export class SidebarComponent {
   title!: string;
 
   constructor(
-    /*private utilsService: UtilitiesService*/
     config: NgbAccordionConfig
   ) {
     config.closeOthers = true;

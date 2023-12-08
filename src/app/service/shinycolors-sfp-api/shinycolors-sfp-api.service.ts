@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Unit } from '../../shared/interfaces/unit';
 import { Idol } from '../../shared/interfaces/idol';
+import { ProduceIdol, SupportCharacter } from '../../shared/interfaces/common';
 
 @Injectable({
   providedIn: 'root',
@@ -40,5 +41,21 @@ export class ShinyColorsSfpAPIService {
         responseType: 'json',
       })
       .pipe(catchError(this.handleError<Idol>('getIdolInfo')));
+  }
+
+  getProduceInfo(cardId: number): Observable<ProduceIdol> {
+    return this.http
+      .get<ProduceIdol>(`${environment.api2Url}produceIdol/${cardId}`, {
+        responseType: 'json',
+      })
+      .pipe(catchError(this.handleError<ProduceIdol>('getProduceInfo')));
+  }
+
+  getSupportInfo(cardId: number): Observable<SupportCharacter> {
+    return this.http
+      .get<SupportCharacter>(`${environment.api2Url}supportCharacter/${cardId}`, {
+        responseType: 'json',
+      })
+      .pipe(catchError(this.handleError<SupportCharacter>('getSupportInfo')));
   }
 }

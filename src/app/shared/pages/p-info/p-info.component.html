@@ -1,0 +1,89 @@
+<div class="row d-flex justify-content-center" *ngIf="this.cardInfo">
+    <h1 class="col-12">{{this.cardInfo.mlProduceIdolText_Name}} {{this.cardInfo.mlCharacterText_Name}}</h1>
+    <div class="col-xl-4 col-sm-12 container row justify-content-center">
+        <div id="picture" class="col-12 justify-content-center">
+            <img [src]="this.getPictureUrl()" alt class="img-fluid">
+        </div>
+        <!--div class="col-12 float-end">
+            <table class="table table-bordered">
+                <tr>
+                    <th>COST</th>
+                </tr>
+                <tr>
+                    <td>{{this.cardInfo.cost}}</td>
+                </tr>
+            </table>
+        </div-->
+        <div class="col-12">
+            <table class="table table-bordered text-center">
+                <tr class="row">
+                    <td class="col-3" style="background-color: crimson;">Vo</td>
+                    <td class="col-3" style="background-color: cornflowerblue">Da</td>
+                    <td class="col-3" style="background-color: chocolate;">Vi</td>
+                    <td class="col-3" style="background-color: green;">Me</td>
+                </tr>
+                <tr class="row">
+                    <td class="col-3">{{this.cardInfo.starIdolParameterList.at(-1)!.idolParameter.vocal}}</td>
+                    <td class="col-3">{{this.cardInfo.starIdolParameterList.at(-1)!.idolParameter.dance}}</td>
+                    <td class="col-3">{{this.cardInfo.starIdolParameterList.at(-1)!.idolParameter.visual}}</td>
+                    <td class="col-3">{{this.cardInfo.starIdolParameterList.at(-1)!.idolParameter.mental}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-xl-4 col-sm-12">
+        <h2>アイドルのスキル</h2>
+        <table class="table">
+            <tr *ngFor="let i of this.cardInfo.idolSkillList">
+                <th>
+                    <img width="50px" height="50px" class="img-fluid"
+                        [src]="this.getMacroSkillIcon(i)" alt>
+                </th>
+                <!--td>
+                        <span>{{i.appealTypeList.at(0)}}</span>
+                    </td-->
+                <td class="align-middle">
+                    <span>{{this.getSkillDescription(i)}}</span>
+                </td>
+            </tr>
+            <!--app-idol-skill *ngFor="let i of this.cardInfo.idolSkillList" [thisSkill]="i"></app-idol-skill-->
+        </table>
+        <h2>アイドルイベント</h2>
+        <table class="table">
+            <tr *ngFor="let i of this.cardInfo.produceIdolEventList">
+                <td>
+                    <h3>
+                        {{i.mlADVInfo_Title}}
+                    </h3>
+                    <div>
+                        {{i.mlADVInfo_Summary}}
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-xl-4 col-sm-12">
+        <h2>潜在ライブスキル</h2>
+        <table class="table">
+            <ng-container *ngFor="let i of this.cardInfo.potentialLiveSkillList">
+                <tr>
+                    <td>
+                        <img width="20px" height="20px" class="img-fluid d-inline-block"
+                            [src]="this.getPotentialSkillIcon(i)" alt>
+                        {{i.mlPotentialLiveSkillText_Title}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            {{this.getTaglessDescription(i.levelList.at(-1)?.mlPotentialLiveSkillText_Description)}}
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+            <!--app-live-skill *ngFor="let i of this.cardInfo.potentialLiveSkillList" [thisSkill]="i"></app-live-skill-->
+        </table>
+        <!--h2>ステージ衣装</h2-->
+
+    </div>
+</div>
