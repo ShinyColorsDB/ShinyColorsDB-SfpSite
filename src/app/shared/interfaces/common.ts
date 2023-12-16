@@ -1,4 +1,10 @@
-import { GoodScheduleDetailType, LiveSkillType, NaviType, ProductType } from "./enum";
+import {
+    GoodScheduleDetailType,
+    LiveSkillType,
+    NaviType,
+    ProductType,
+    Rarity,
+} from "./enum";
 
 export type StarIdolParameter = {
     star: number;
@@ -131,29 +137,8 @@ export type LimitBreakRecipeProduct = {
     mlItem_ItemDesc011?: string; // support card
 };
 
-export type CharacterAlbumMetadata = CharacterInfo & {
-    mstCharacterInfoId: number;
-    mstUnitId: number;
-    mstIdolId: number;
-    mlUnitText_Name: string;
-
-    produceIdolBriefs: ProduceIdolBrief[];
-    // characterIdolBriefs: SupportCharacterBrief[]
-};
-
-export type ProduceIdolBrief = {
-    mstProduceIdolId: number;
-    cost: number;
-    createDate: {
-        seconds: string;
-        nanos: number;
-    };
-    initialStar: number;
-
-    mlCharacterText_Name: string;
-};
-
 export type CharacterInfo = {
+    mstCharacterInfoId: number;
     mlCharacterText_CV: string;
     mlCharacterText_FirstName: string;
     mlCharacterText_LastName: string;
@@ -165,21 +150,26 @@ export type ProduceIdol = CharacterInfo & {
     cost: number;
     star: LevelStatus;
     evolutionLevel: LevelStatus;
-    starIdolParameterList: StarIdolParameter[];
+    starIdolParameterList?: StarIdolParameter[];
+    idolParameter?: {
+        vocal: number;
+        dance: number;
+        visual: number;
+        mental: number;
+    };
     selectedMstIdolSkillId: number;
     idolSkillList: IdolSkill[];
     produceIdolEventList: ProduceIdolEvent[];
     potentialLiveSkillList: PotentialLiveSkill[];
     dressSetList: DressSet[];
-    createDate: {
+    createDate?: {
         seconds: string;
         nanos: number;
     };
-    limitBreakRecipeProduct: LimitBreakRecipeProduct;
+    limitBreakRecipeProduct?: LimitBreakRecipeProduct;
     evolutionRecipeGroupId: number;
     mstUnitId: number;
     mstIdolId: number;
-    mstCharacterInfoId: number;
     initialStar: number;
     cardId: number;
 
@@ -216,7 +206,7 @@ export type SupportCharacterEvent = {
 
 export type SupportCharacter = {
     mstSupportCharacterId: number;
-    rarity: string; // or enum if you have predefined values
+    rarity: Rarity; // or enum if you have predefined values
     level: LevelStatus;
     diamond: {
         limit: number;
@@ -230,7 +220,6 @@ export type SupportCharacter = {
         nanos: number;
     };
     limitBreakRecipeProduct: LimitBreakRecipeProduct;
-    mstCharacterInfoId: number;
     cardId: number;
     goodScheduleDetailType: GoodScheduleDetailType;
     produceEntrust: ProduceEntrust;

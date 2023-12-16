@@ -5,3 +5,8 @@
 .title-text{
     font-family: Meiryo;
 }
+
+#iconDiv {
+    width: 400px;
+    height: 400px;
+}

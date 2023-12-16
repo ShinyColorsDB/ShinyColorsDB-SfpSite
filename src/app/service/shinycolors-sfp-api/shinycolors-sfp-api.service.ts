@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Unit } from '../../shared/interfaces/unit';
 import { Idol } from '../../shared/interfaces/idol';
 import { ProduceIdol, SupportCharacter } from '../../shared/interfaces/common';
+import { CharacterAlbumMetadata } from '../../shared/interfaces/album';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +42,14 @@ export class ShinyColorsSfpAPIService {
         responseType: 'json',
       })
       .pipe(catchError(this.handleError<Idol>('getIdolInfo')));
+  }
+
+  getIdolCardList(IdolID: number): Observable<CharacterAlbumMetadata> {
+    return this.http
+      .get<CharacterAlbumMetadata>(`${environment.api2Url}album/${IdolID}`, {
+        responseType: 'json',
+      })
+      .pipe(catchError(this.handleError<CharacterAlbumMetadata>('getIdolCardList')));
   }
 
   getProduceInfo(cardId: number): Observable<ProduceIdol> {

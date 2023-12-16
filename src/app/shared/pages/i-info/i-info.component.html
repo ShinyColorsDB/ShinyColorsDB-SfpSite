@@ -1,100 +1,135 @@
-<div class="row m-0 p-0" *ngIf="this.idolInfo">
-    <div class="d-flex col-lg-4 col-md-12 h-100 container justify-content-center" id="divIdolData">
-        <div class="row">
-            <div class="col-12 pt-2 d-block">
-                <h1 class="w-100 d-none d-md-block text-center">{{this.idolInfo.idolName}}</h1>
-                <app-icon class="img-fluid d-block mx-auto" [idolInfo]="this.idolInfo"></app-icon>
-            </div>
-            <div class="col-12 d-block">
-                <table class="table w-100">
-                    <tr class="row">
-                        <th class="col-2"></th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.hiragana}}</td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-2 d-flex align-items-center">姓名</th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.idolName}}</td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-2 d-flex align-items-center">所屬</th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.unit.unitName}}</td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-2 d-flex align-items-center">生日</th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.birthday}}</td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-2 d-flex align-items-center">年齡</th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.age}}</td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-2 d-flex align-items-center">身高</th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.height}}</td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-2 d-flex align-items-center">體重</th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.weight}}</td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-2 d-flex align-items-center">三圍</th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.threeSize}}</td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-2 d-flex align-items-center">血型</th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.bloodType}}</td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-2 d-flex align-items-center">星座</th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.starSign}}</td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-2 d-flex align-items-center">出身</th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.birthPlace}}</td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-2 d-flex align-items-center">興趣</th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.interest}}</td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-2 d-flex align-items-center">特技</th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.specialSkill}}</td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-2 d-flex align-items-center">聲優</th>
-                        <td class="col-10 d-flex align-items-center">{{this.idolInfo.cv}}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+<div class="row m-0 p-0" *ngIf="this.idolInfo && this.idolAlbum">
+  <div class="d-flex col-lg-4 col-md-12 h-100 container justify-content-center" id="divIdolData">
+    <div class="row">
+      <div class="col-12 pt-2 d-block">
+        <h1 class="w-100 d-none d-md-block text-center">{{this.idolInfo.idolName}}</h1>
+        <app-icon class="img-fluid d-block mx-auto" [idolInfo]="this.idolInfo"></app-icon>
+      </div>
+      <div class="col-12 d-block">
+        <table class="table w-100">
+          <thead></thead>
+          <tbody>
+            <tr class="row">
+              <th class="col-2"></th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.hiragana}}</td>
+            </tr>
+            <tr class="row">
+              <th class="col-2 d-flex align-items-center">姓名</th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.idolName}}</td>
+            </tr>
+            <tr class="row">
+              <th class="col-2 d-flex align-items-center">所屬</th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.unit.unitName}}</td>
+            </tr>
+            <tr class="row">
+              <th class="col-2 d-flex align-items-center">生日</th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.birthday}}</td>
+            </tr>
+            <tr class="row">
+              <th class="col-2 d-flex align-items-center">年齡</th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.age}}</td>
+            </tr>
+            <tr class="row">
+              <th class="col-2 d-flex align-items-center">身高</th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.height}}</td>
+            </tr>
+            <tr class="row">
+              <th class="col-2 d-flex align-items-center">體重</th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.weight}}</td>
+            </tr>
+            <tr class="row">
+              <th class="col-2 d-flex align-items-center">三圍</th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.threeSize}}</td>
+            </tr>
+            <tr class="row">
+              <th class="col-2 d-flex align-items-center">血型</th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.bloodType}}</td>
+            </tr>
+            <tr class="row">
+              <th class="col-2 d-flex align-items-center">星座</th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.starSign}}</td>
+            </tr>
+            <tr class="row">
+              <th class="col-2 d-flex align-items-center">出身</th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.birthPlace}}</td>
+            </tr>
+            <tr class="row">
+              <th class="col-2 d-flex align-items-center">興趣</th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.interest}}</td>
+            </tr>
+            <tr class="row">
+              <th class="col-2 d-flex align-items-center">特技</th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.specialSkill}}</td>
+            </tr>
+            <tr class="row">
+              <th class="col-2 d-flex align-items-center">聲優</th>
+              <td class="col-10 d-flex align-items-center">{{this.idolInfo.cv}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="d-flex col-lg-8 col-md-12 h-100 container justify-content-center pt-3 pb-5" id="divInfo">
-        <div class="row w-100">
-            <div class="card col-12 w-100 overflow-auto ps-0 pe-0 h-100">
-                <div class="card-header w-100">
-                    <ul class="nav nav-tabs card-header-tabs">
-                        <li class="nav-item">
-                            <a href="javascript: void()" class="nav-link title-text" (click)="togglePS = true" [ngClass]="{'disabled': togglePS, 'active': togglePS}">
-                                P卡列表
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript: void()" class="nav-link title-text" (click)="togglePS = false" [ngClass]="{'disabled': !togglePS, 'active': !togglePS}">
-                                S卡列表
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card-body w-100 container overflow-auto h-100 justify-content-center">
-                    <div class="row w-100 m-0" [ngClass]="{'d-none': !togglePS}">
-                        <app-card-item *ngFor="let i of this.tempData" class="col-md-6 col-lg-4 col-sm-12 pt-1 pb-1"
-                            [pathType]="'/pinfo'" [cardId]="i.mstProduceIdolId" [cardName]="i.mlProduceIdolText_Name"></app-card-item>
-                    </div>
-                    <div class="row w-100 m-0" [ngClass]="{'d-none': togglePS}">
-                        <app-card-item *ngFor="let i of this.tempData" class="col-md-6 col-lg-4 col-sm-12 pt-1 pb-1"
-                            [pathType]="'/sinfo'" [cardId]="i.mstProduceIdolId" [cardName]="i.mlProduceIdolText_Name"></app-card-item>
-                    </div>
-                </div>
-            </div>
+  </div>
+  <div class="d-flex col-lg-8 col-md-12 h-100 container justify-content-center pt-3 pb-5" id="divInfo">
+    <div class="row w-100">
+      <div class="card col-12 w-100 overflow-auto ps-0 pe-0 h-100">
+        <div class="card-header w-100">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a href="javascript: void()" class="nav-link title-text" (click)="togglePS = true" [ngClass]="{'disabled': togglePS, 'active': togglePS}">
+                P卡列表
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript: void()" class="nav-link title-text" (click)="togglePS = false" [ngClass]="{'disabled': !togglePS, 'active': !togglePS}">
+                S卡列表
+              </a>
+            </li>
+          </ul>
         </div>
+        <div class="card-body w-100 container overflow-auto h-100 justify-content-center">
+          <div class="row w-100 m-0" [ngClass]="{'d-none': !togglePS}">
+            @if (this.P_3.length) {
+            <h3 class="mt-2">✩3</h3>
+            @for (i of this.P_3; track $index) {
+            <app-card-item class="col-md-12 col-lg-6 col-xl-3 pt-1 pb-1"
+              [pathType]="'/pinfo'" [cardId]="i.mstProduceIdolId" [cardName]="i.mlProduceIdolText_Name"></app-card-item>
+            }}
+            @if (this.P_2.length) {
+            <h3 class="mt-2">✩2</h3>
+            @for (i of this.P_2; track $index) {
+            <app-card-item class="col-md-12 col-lg-6 col-xl-3 pt-1 pb-1"
+              [pathType]="'/pinfo'" [cardId]="i.mstProduceIdolId" [cardName]="i.mlProduceIdolText_Name"></app-card-item>
+            }}
+            @if (this.P_1.length) {
+            <h3 class="mt-2">✩1</h3>
+            @for (i of this.P_1; track $index) {
+            <app-card-item class="col-md-12 col-lg-6 col-xl-3 pt-1 pb-1"
+              [pathType]="'/pinfo'" [cardId]="i.mstProduceIdolId" [cardName]="i.mlProduceIdolText_Name"></app-card-item>
+            }}
+          </div>
+          <div class="row w-100 m-0" [ngClass]="{'d-none': togglePS}">
+            @if (this.S_SSR.length) {
+            <h3 class="mt-2">SSR</h3>
+            @for (i of this.S_SSR; track $index) {
+              <app-card-item class="col-lg-4 col-sm-12 pt-1 pb-1"
+              [pathType]="'/sinfo'" [cardId]="i.mstSupportCharacterId" [cardName]="i.mlSupportCharaText_Name"></app-card-item>
+            }}
+            @if (this.S_SR.length) {
+            <h3 class="mt-2">SR</h3>
+            @for (i of this.S_SR; track $index) {
+              <app-card-item class="col-lg-4 col-sm-12 pt-1 pb-1"
+              [pathType]="'/sinfo'" [cardId]="i.mstSupportCharacterId" [cardName]="i.mlSupportCharaText_Name"></app-card-item>
+            }}
+            @if (this.S_R.length) {
+            <h3 class="mt-2">R</h3>
+            @for (i of this.S_R; track $index) {
+              <app-card-item class="col-lg-4 col-sm-12 pt-1 pb-1"
+              [pathType]="'/sinfo'" [cardId]="i.mstSupportCharacterId" [cardName]="i.mlSupportCharaText_Name"></app-card-item>
+            }}
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

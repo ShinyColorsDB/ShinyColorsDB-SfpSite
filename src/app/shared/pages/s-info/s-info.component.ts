@@ -26,6 +26,8 @@ export class SInfoComponent implements OnInit {
 
   cardInfo!: SupportCharacter;
 
+  current: number = 1;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -51,8 +53,6 @@ export class SInfoComponent implements OnInit {
 
           this.cardInfo = data;
 
-          console.log(this.cardInfo.supportEffectList);
-
           this.title.setTitle(`${this.cardInfo.mlSupportCharaText_Name} ${this.cardInfo.mlCharacterText_Name}`);
           //this.utilsService.generateIdolMeta(this.idolInfo).forEach(e => {
           //  this.meta.updateTag(e);
@@ -67,5 +67,13 @@ export class SInfoComponent implements OnInit {
 
   getPictureUrl(): string {
     return this.scSfpUrlService.getSupportPictureUrl(this.cardInfo.mstSupportCharacterId);
+  }
+
+  getEmptyArray(s: number): number[] {
+    return new Array(s);
+  }
+
+  getDate(s: string): string {
+    return new Date(Number(s) * 1000).toLocaleDateString('ja-JP', { year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
   }
 }

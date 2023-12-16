@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { NgbAccordionModule, NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 import { catchError, of } from 'rxjs';
 
 
@@ -17,7 +18,7 @@ import { IdolSkill, PotentialLiveSkill, ProduceIdol } from '../../interfaces/com
 @Component({
   selector: 'app-p-info',
   standalone: true,
-  imports: [CommonModule, IconComponent, IdolSkillComponent],
+  imports: [CommonModule, IconComponent, IdolSkillComponent, NgbCollapse, NgbAccordionModule],
   templateUrl: './p-info.component.html',
   styleUrl: './p-info.component.css',
   host: {
@@ -28,7 +29,11 @@ export class PInfoComponent implements OnInit {
 
   cardId!: number;
 
-  cardInfo!: ProduceIdol
+  cardInfo!: ProduceIdol;
+
+  current: number = 1;
+
+  skillCollapseMap: Map<number, boolean> = new Map<number, boolean>();
 
   constructor(
     private route: ActivatedRoute,
@@ -63,6 +68,10 @@ export class PInfoComponent implements OnInit {
           this.utilService.emitActiveIds([this.cardInfo.mstIdolId, this.cardInfo.mstUnitId]);
           //this.utilsService.emitMobileTitle(this.idolInfo.idolName);
 
+          this.cardInfo.idolSkillList.forEach((e, index) => {
+            this.skillCollapseMap.set(index, true);
+          });
+
         });
     });
   }
@@ -85,5 +94,13 @@ export class PInfoComponent implements OnInit {
 
   getTaglessDescription(desc: string | undefined): string {
     return desc!.replace(/<[^>]*>/g, '');
+  }
+
+  getIdolSkillCostIcon(): string {
+    return this.scSfpUrlService.getIdolSkillCostIconUrl();
+  }
+
+  getCollapseStatus(skillIndex: number): boolean {
+    return this.skillCollapseMap.get(skillIndex) || false;
   }
 }

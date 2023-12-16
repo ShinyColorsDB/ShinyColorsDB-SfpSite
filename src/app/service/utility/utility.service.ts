@@ -11,6 +11,8 @@ export class UtilityService {
 
   mobileTitle = new EventEmitter<string>();
 
+  currentModal = new EventEmitter<number>();
+
   emitActiveIds(ids: number[]) {
     this.activeIds.emit(ids);
   }
@@ -21,5 +23,9 @@ export class UtilityService {
       display = title.match(/(【.*】)/)![1];
     }
     this.mobileTitle.emit(display);
+  }
+
+  emitModal(current: number) {
+    this.currentModal.emit(current);
   }
 }

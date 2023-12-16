@@ -1,12 +1,15 @@
 <div class="card">
-    <a
-      [routerLink]="this.pathType"
-      [queryParams]="{ cardId: this.cardId }">
-        <img [src]="this.getPictureUrl()" alt class="card-img-top">
-        <div class="card-body ps-0 pe-0">
-            <h5 class="card-text text-center">
-                {{this.cardName}}
-            </h5>
-        </div>
-    </a>
+  <a
+    [routerLink]="this.pathType"
+    [queryParams]="{ cardId: this.cardId }"
+    class="mx-auto">
+    <div class="text-center mx-auto" [ngClass]="{'imgContainer': this.pathType == '/pinfo'}">
+      <img [src]="this.getPictureUrl()" alt class="my-auto img-fluid mh-100">
+    </div>
+    <div class="card-body ps-0 pe-0">
+      <h5 class="card-text text-center">
+        {{this.cardName}}
+      </h5>
+    </div>
+  </a>
 </div>

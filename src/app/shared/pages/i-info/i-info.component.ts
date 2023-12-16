@@ -13,6 +13,7 @@ import { IconComponent } from '../../components/icon/icon.component';
 import { CardItemComponent } from '../../components/card-item/card-item.component';
 
 import { Idol } from '../../interfaces/idol';
+import { CharacterAlbumMetadata, ProduceIdolBrief, SupportCharacterBrief } from '../../interfaces/album';
 
 
 @Component({
@@ -25,31 +26,27 @@ import { Idol } from '../../interfaces/idol';
     class: "col-xxl-10 col-lg-9 col-md-7 col-sm-12 overflow-auto vh-100 overflow-auto"
   }
 })
-export class IInfoComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
+export class IInfoComponent {
   idolInfo!: Idol;
+  idolAlbum!: CharacterAlbumMetadata;
+
   idolId!: number;
 
   togglePS = true;
 
-  tempData: {
-    "mstProduceIdolId": number,
-    "mlProduceIdolText_Name": string
-  }[] = [
-      {
-        "mstProduceIdolId": 101001,
-        "mlProduceIdolText_Name": "天海春香"
-      },
-      {
-        "mstProduceIdolId": 101002,
-        "mlProduceIdolText_Name": "如月千早"
-      }
-    ];
+  P_3: ProduceIdolBrief[] = [];
+  P_2: ProduceIdolBrief[] = [];
+  P_1: ProduceIdolBrief[] = [];
+  S_SSR: SupportCharacterBrief[] = [];
+  S_SR: SupportCharacterBrief[] = [];
+  S_R: SupportCharacterBrief[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private title: Title,
     private scSfpApiService: ShinyColorsSfpAPIService,
+    private scSfpUrlService: ShinyColorsSfpUrlService,
     private utilsService: UtilityService
   ) {
     this.route.queryParams.subscribe((params) => {
@@ -78,19 +75,59 @@ export class IInfoComponent implements OnInit, OnChanges, OnDestroy, AfterViewIn
           //  this.classifyType(card);
           //});
         });
+
+      this.scSfpApiService.getIdolCardList(this.idolId)
+        .pipe(catchError(err => {
+          this.router.navigate(['/notfound'])
+          return of(null);
+        }))
+        .subscribe((data) => {
+          if (!data) { return; }
+
+          this.idolAlbum = data;
+
+          this.categoryReset();
+
+          this.idolAlbum.produceIdolBriefs.forEach((card) => {
+            switch (card.initialStar) {
+              case 3:
+                this.P_3.push(card);
+                break;
+              case 2:
+                this.P_2.push(card);
+                break;
+              case 1:
+                this.P_1.push(card);
+                break;
+            }
+          });
+          this.idolAlbum.supportCharacterBriefs.forEach((card) => {
+            switch (card.rarity) {
+              case "ssr":
+                this.S_SSR.push(card);
+                break;
+              case "sr":
+                this.S_SR.push(card);
+                break;
+              case "R":
+                this.S_R.push(card);
+                break;
+            }
+          });
+        });
     });
   }
 
-  ngOnInit() {
-
+  categoryReset(): void {
+    this.P_3 = [];
+    this.P_2 = [];
+    this.P_1 = [];
+    this.S_SSR = [];
+    this.S_SR = [];
+    this.S_R = [];
   }
 
-  ngOnChanges() {
-  }
-
-  ngOnDestroy() { }
-
-  ngAfterViewInit() {
-
+  getIconUrl(): string {
+    return this.scSfpUrlService.getBigIdolIconUrl(this.idolId);
   }
 }

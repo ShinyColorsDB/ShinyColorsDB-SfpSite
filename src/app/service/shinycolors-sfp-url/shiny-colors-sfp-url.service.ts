@@ -19,19 +19,27 @@ export class ShinyColorsSfpUrlService {
     return `https://sfp-static.shinycolors.moe/images/characters/smlIcon/TwestaChrIcon_${idolId.toString().padStart(2, "0")}.png`;
   }
 
+  getProduceIconUrl(cardId: number): string {
+    return `https://sfp-static.shinycolors.moe/images/content/idols/icon/pi_icon_sq_${cardId}.png`;
+  }
+
   getProducePictureUrl(cardId: number): string {
-    return `https://sfp-static.shinycolors.moe/images/content/idols/card/pi_icon_rect_${cardId}.png`
+    return `https://sfp-static.shinycolors.moe/images/content/idols/card/pi_icon_rect_${cardId}.png`;
   }
 
   getSupportPictureUrl(cardId: number): string {
-    return `https://sfp-static.shinycolors.moe/images/content/support_idols/card/sc_icon_rect_${cardId}.png`
+    return `https://sfp-static.shinycolors.moe/images/content/support_idols/card/sc_icon_rect_${cardId}.png`;
+  }
+
+  getIdolSkillCostIconUrl(): string {
+    return `https://sfp-static.shinycolors.moe/images/ui/Skill_Cost_BaseNoamal.png`;
   }
 
   getMacroIdolSKillIconUrl(skillId: number): string {
-    return `https://sfp-static.shinycolors.moe/images/skills/idol/IdolSkillType_Icon_${skillId.toString().padStart(2, "0")}.png`
+    return `https://sfp-static.shinycolors.moe/images/skills/idol/IdolSkillType_Icon_${skillId.toString().padStart(2, "0")}.png`;
   }
 
   getPotentiaoSkillIconUrl(skillId: number): string {
-    return `https://sfp-static.shinycolors.moe/images/skills/potential/Ico_PotentialLiveSkill_${skillId}_l.png`
+    return `https://sfp-static.shinycolors.moe/images/skills/potential/Ico_PotentialLiveSkill_${skillId}_l.png`;
   }
 }

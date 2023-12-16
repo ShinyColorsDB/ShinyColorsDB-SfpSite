@@ -1,35 +1,115 @@
 <div class="row d-flex justify-content-center" *ngIf="this.cardInfo">
-    <h1 class="col-12">{{this.cardInfo.mlSupportCharaText_Name}} {{this.cardInfo.mlCharacterText_Name}}</h1>
-    <div class="col-xl-6 col-sm-12 container row justify-content-center">
-        <div class="col-12 justify-content-center">
-            <img [src]="this.getPictureUrl()" width="584" height="328" class="img-fluid">
-        </div>
+  <h1 class="col-12 mt-2">{{this.cardInfo.mlSupportCharaText_Name}} {{this.cardInfo.mlCharacterText_Name}}</h1>
+  <div class="col-xl-4 col-sm-12 container row justify-content-center mt-2">
+    <div class="col-12 justify-content-center">
+      <img [src]="this.getPictureUrl()" width="584" height="328" class="img-fluid">
+      <table class="table table-bordered mt-3">
+        <thead></thead>
+        <tbody>
+          <tr class="row">
+            <th class="col-4">突破</th>
+            <td class="col-8">
+              @for (item of this.getEmptyArray(this.cardInfo.diamond.limit); track $index) {
+                🔷
+              }
+            </td>
+          </tr>
+          <tr class="row">
+            <th class="col-4">技能槽</th>
+            <td class="col-8">
+              @for (item of this.getEmptyArray(this.cardInfo.supportSkillSlotAmount.limit); track $index) {
+                🔵
+              }
+            </td>
+          </tr>
+          <tr class="row">
+            <th class="col-4">稀有度</th>
+            <td class="col-8">{{this.cardInfo.rarity}}</td>
+          </tr>
+          <!--tr class="row">
+            <th class="col-4">リリース</th>
+            <td class="col-8">{{this.getDate(this.cardInfo.createDate.seconds)}}</td>
+          </tr-->
+          <tr class="row">
+            <th class="col-4">得意スケジュール</th>
+            <td class="col-8">{{this.cardInfo.goodScheduleDetailType}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="col-xl-6 col-sm-12">
-        <h2>サポート効果</h2>
-        <ul class="list-group">
-            @for (item of this.cardInfo.supportEffectList; track $index) {
-                <li class="list-group-item">
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>{{item.mlSupportEffectText_Name}}</th>
-                        </tr>
-                        <tr>
-                            <td>{{item.mlSupportEffectText_Description}}</td>
-                        </tr>
-                    </table>
-                </li>
-            }
-            <!--li *ngFor="let i of this.cardInfo.supportEffectList" class="list-group-item">
-                <table class="table table-bordered">
-                    <tr>
-                        <th>{{i.mlSupportEffectText_Name}}</th>
-                    </tr>
-                    <tr>
-                        <td>{{i.mlSupportEffectText_Description}}</td>
-                    </tr>
-                </table>
-            </li-->
+  </div>
+  <div class="col-xl-8 col-sm-12 mt-2">
+    <div class="card">
+      <div class="card-header d-none d-xl-block">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item" (click)="this.current = 1">
+            <a href="javascript: void(0)" class="nav-link" [ngClass]="{'active': this.current === 1, 'disabled': this.current === 1}">サポート効果</a>
+          </li>
+          <li class="nav-item" (click)="this.current = 2">
+            <a href="javascript: void(0)" class="nav-link" [ngClass]="{'active': this.current === 2, 'disabled': this.current === 2}">サポートスキル</a>
+          </li>
+          <li class="nav-item" (click)="this.current = 3">
+            <a href="javascript: void(0)" class="nav-link" [ngClass]="{'active': this.current === 3, 'disabled': this.current === 3}">サポートイベント</a>
+          </li>
         </ul>
+      </div>
+      <div class="card-body" [ngClass]="{'d-xl-none': this.current !== 1}">
+        <h3 class="d-xs-block d-xl-none">サポート効果</h3>
+        <ul class="list-group">
+          @for (item of this.cardInfo.supportEffectList; track $index) {
+          <li class="list-group-item">
+            <table>
+              <tbody>
+                <tr>
+                  <th>{{item.mlSupportEffectText_Name}}</th>
+                </tr>
+                <tr>
+                  <td>{{item.mlSupportEffectText_Description}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          }
+        </ul>
+      </div>
+      <div class="card-body" [ngClass]="{'d-xl-none': this.current !== 2}">
+        <h3 class="d-xs-block d-xl-none">サポートスキル</h3>
+        <ul class="list-group">
+          @for (item of this.cardInfo.potentialSupportSkillList; track $index) {
+          <li class="list-group-item">
+            <table>
+              <tbody>
+                <tr>
+                  <th>{{item.mlPotentialSupportSkillText_Name}}</th>
+                </tr>
+                <tr>
+                  <td>{{item.mlPotentialSupportSkillText_Description}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          }
+        </ul>
+      </div>
+      <div class="card-body" [ngClass]="{'d-xl-none': this.current !== 3}">
+        <h3 class="d-xs-block d-xl-none">サポートイベント</h3>
+        <ul class="list-group">
+          @for (item of this.cardInfo.supportCharacterEventList; track $index) {
+          <li class="list-group-item">
+            <table>
+              <tbody>
+                <tr>
+                  <th>{{item.mlADVInfo_Title}}</th>
+                </tr>
+                <tr>
+                  <td>{{item.mlADVInfo_Summary}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          }
+        </ul>
+      </div>
     </div>
+  </div>
 </div>

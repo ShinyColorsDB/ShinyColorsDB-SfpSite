@@ -20,7 +20,7 @@
     "@angular/platform-browser-dynamic": "^17.0.6",
     "@angular/platform-server": "^17.0.6",
     "@angular/router": "^17.0.6",
-    "@angular/ssr": "^17.0.1",
+    "@angular/ssr": "^17.0.6",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@nguniversal/express-engine": "^7.0.2",
     "@popperjs/core": "^2.11.8",
