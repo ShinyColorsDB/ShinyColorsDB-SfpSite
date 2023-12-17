@@ -23,7 +23,7 @@ import { CharacterAlbumMetadata, ProduceIdolBrief, SupportCharacterBrief } from 
   templateUrl: './i-info.component.html',
   styleUrl: './i-info.component.css',
   host: {
-    class: "col-xxl-10 col-lg-9 col-md-7 col-sm-12 overflow-auto vh-100"
+    class: "col-xxl-10 col-lg-9 col-md-8 col-sm-12 overflow-auto vh-100"
   }
 })
 export class IInfoComponent {

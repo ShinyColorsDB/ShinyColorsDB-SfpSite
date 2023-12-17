@@ -22,7 +22,7 @@ import { IdolSkill, PotentialLiveSkill, PotentialLiveSkillLevel, ProduceIdol } f
   templateUrl: './p-info.component.html',
   styleUrl: './p-info.component.css',
   host: {
-    class: "col-xxl-10 col-lg-9 col-md-7 col-sm-12 overflow-auto vh-100 overflow-auto",
+    class: "col-xxl-10 col-lg-9 col-md-8 col-sm-12 overflow-auto vh-100 overflow-auto",
     ngSkipHydration: 'true'
   }
 })
