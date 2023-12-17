@@ -1,6 +1,6 @@
 @if (this.idolInfo && this.idolAlbum) {
 <div class="row m-0 p-0">
-  <div class="d-flex col-lg-4 col-md-12 h-100 container justify-content-center" id="divIdolData">
+  <div class="d-flex col-xl-4 col-lg-12 col-md-12 h-100 container justify-content-center" id="divIdolData">
     <div class="row">
       <div class="col-12 pt-2 d-block">
         <h1 class="w-100 d-none d-md-block text-center">{{this.idolInfo.idolName}}</h1>
@@ -73,7 +73,7 @@
       </div>
     </div>
   </div>
-  <div class="d-flex col-lg-8 col-md-12 h-100 container justify-content-center pt-3 pb-5" id="divInfo">
+  <div class="d-flex col-xl-8 col-lg-12 col-md-12 h-100 container justify-content-center pt-3 pb-5" id="divInfo">
     <div class="row w-100">
       <div class="card col-12 w-100 overflow-auto ps-0 pe-0 h-100">
         <div class="card-header w-100">
@@ -95,19 +95,19 @@
             @if (this.P_3.length) {
             <h3 class="mt-2">✩3</h3>
             @for (i of this.P_3; track $index) {
-            <app-card-item class="col-md-12 col-lg-6 col-xl-3 pt-1 pb-1"
+            <app-card-item class="col-md-12 col-lg-6 col-xl-6 col-xxl-4 pt-1 pb-1"
               [pathType]="'/pinfo'" [cardId]="i.mstProduceIdolId" [cardName]="i.mlProduceIdolText_Name"></app-card-item>
             }}
             @if (this.P_2.length) {
             <h3 class="mt-2">✩2</h3>
             @for (i of this.P_2; track $index) {
-            <app-card-item class="col-md-12 col-lg-6 col-xl-3 pt-1 pb-1"
+            <app-card-item class="col-md-12 col-lg-6 col-xl-6 col-xxl-4 pt-1 pb-1"
               [pathType]="'/pinfo'" [cardId]="i.mstProduceIdolId" [cardName]="i.mlProduceIdolText_Name"></app-card-item>
             }}
             @if (this.P_1.length) {
             <h3 class="mt-2">✩1</h3>
             @for (i of this.P_1; track $index) {
-            <app-card-item class="col-md-12 col-lg-6 col-xl-3 pt-1 pb-1"
+            <app-card-item class="col-md-12 col-lg-6 col-xl-6 col-xxl-4 pt-1 pb-1"
               [pathType]="'/pinfo'" [cardId]="i.mstProduceIdolId" [cardName]="i.mlProduceIdolText_Name"></app-card-item>
             }}
           </div>
