@@ -1,4 +1,5 @@
-<div class="row m-0 p-0" *ngIf="this.idolInfo && this.idolAlbum">
+@if (this.idolInfo && this.idolAlbum) {
+<div class="row m-0 p-0">
   <div class="d-flex col-lg-4 col-md-12 h-100 container justify-content-center" id="divIdolData">
     <div class="row">
       <div class="col-12 pt-2 d-block">
@@ -135,3 +136,4 @@
     </div>
   </div>
 </div>
+}

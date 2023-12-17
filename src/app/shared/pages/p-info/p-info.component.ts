@@ -68,12 +68,11 @@ export class PInfoComponent implements OnInit {
           //});
 
           this.utilService.emitActiveIds([this.cardInfo.mstIdolId, this.cardInfo.mstUnitId]);
-          //this.utilsService.emitMobileTitle(this.idolInfo.idolName);
+          this.utilService.emitMobileTitle(this.cardInfo.mlProduceIdolText_Name);
 
           this.cardInfo.idolSkillList.forEach((e, index) => {
             this.skillCollapseMap.set(index, true);
           });
-
         });
     });
   }

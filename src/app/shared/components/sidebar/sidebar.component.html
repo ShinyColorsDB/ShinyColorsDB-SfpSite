@@ -1,8 +1,20 @@
 <div class="h-100">
-  <div class="d-flex justify-content-center">
-    <img src="/assets/logo.png" width="881" height="338" alt="Icon of 283 production" class="img-fluid" ngClass="{'d-none': !isBigScreen}">
+  <div class="h-100 d-flex justify-content-center overflow-hidden" [ngClass]="{ 'd-none': isBigScreen }">
+    <a (click)="onSideBarClick()" class="m-0 p-0 position-absolute top-0 start-0">
+      @if (this.showSideBar) {
+      <svg class="menu-icon align-middle" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path
+            d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z"
+            fill="#3880ff"></path> </g></svg>
+      } @else {
+      <svg class="menu-icon align-middle" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M4 12H20M4 18H20" stroke="#3880ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+      }
+    </a>
+    <p class="h3 m-0 p-1 text-center titleFont">{{this.title}}</p>
   </div>
-  <div ngClass="{ active: showSideBar, sidebar: !isBigScreen }" class="h-100">
+  <div class="d-flex justify-content-center">
+    <img src="/assets/logo.png" width="881" height="338" alt="Icon of 283 production" class="img-fluid" [ngClass]="{'d-none': !isBigScreen}">
+  </div>
+  <div [ngClass]="{ 'active': showSideBar, 'sidebar': !isBigScreen }" class="h-100">
     <div ngbAccordion class="mb-4">
       <div ngbAccordionItem>
         <div ngbAccordionHeader>
@@ -27,10 +39,17 @@
             [isBigScreen]="this.isBigScreen"></app-charlist>
         </div>
       </div>
-      <!--ngb-panel cardClass="mb-5">
-        <ng-template ngbPanelTitle i18n>其他小玩具</ng-template>
-        <ng-template ngbPanelContent>
+      <div ngbAccordionItem [id]="this.charaListId" [collapsed]="false">
+        <div ngbAccordionHeader i18n>
+          <button ngbAccordionButton>其他小玩具</button>
+        </div>
+        <div ngbAccordionCollapse>
           <div class="list-group">
+            <a href="https://shinycolors.moe/"
+              class="text-start list-group-item list-group-item-action w-100 ps-4 bg-light bg-gradient"
+              target="_blank">
+              Shiny Colors 資料庫
+            </a>
             <a
               href="https://spine.shinycolors.moe/"
               class="text-start list-group-item list-group-item-action w-100 ps-4 bg-light bg-gradient"
@@ -44,8 +63,8 @@
               Github
             </a>
           </div>
-        </ng-template>
-      </ngb-panel-->
+        </div>
+      </div>
     </div>
     <!--app-settings></app-settings-->
   </div>

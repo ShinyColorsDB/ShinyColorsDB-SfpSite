@@ -30,8 +30,8 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 export class CharlistComponent {
   units: Array<Unit> = [];
   collapseStatus: Map<number, boolean> = new Map<number, boolean>();
-  currentIdolID!: number;
-  currentUnitID!: number;
+  currentIdolID: number = 1;
+  currentUnitID: number = 1;
 
   @Input()
   public isBigScreen: boolean = false;

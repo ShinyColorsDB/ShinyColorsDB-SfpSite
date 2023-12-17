@@ -1,3 +1,30 @@
 * {
     font-family: LineGothic;
 }
+
+.menu-icon {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
+.sidebar {
+    position: absolute;
+    transition: all 0.3s;
+    width: 100%;
+    opacity: 0;
+    z-index: 1;
+    /* Make it unaccessable by mouse */
+    pointer-events: none;
+    /* Hide it from screen reader */
+    visibility: hidden;
+    transform: translateX(-100%);
+    background-color: white;
+}
+
+.sidebar.active {
+    opacity: 1;
+    transform: translateX(0%);
+    pointer-events: auto;
+    visibility: visible;
+}

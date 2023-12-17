@@ -70,7 +70,7 @@ export class IInfoComponent {
           //});
 
           this.utilsService.emitActiveIds([this.idolId, this.idolInfo.unitId]);
-          //this.utilsService.emitMobileTitle(this.idolInfo.idolName);
+          this.utilsService.emitMobileTitle(this.idolInfo.idolName);
 
           //this.idolInfo.cardLists.forEach((card) => {
           //  this.classifyType(card);

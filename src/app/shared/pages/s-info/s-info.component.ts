@@ -60,7 +60,7 @@ export class SInfoComponent implements OnInit {
           //});
 
           //this.utilService.emitActiveIds([this.cardInfo.mstIdolId, this.cardInfo.mstUnitId]);
-          //this.utilsService.emitMobileTitle(this.idolInfo.idolName);
+          this.utilService.emitMobileTitle(this.cardInfo.mlSupportCharaText_Name);
 
         });
     });

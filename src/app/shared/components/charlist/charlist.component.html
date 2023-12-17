@@ -2,7 +2,6 @@
 <div>
   <button
     class="btn w-100 text-start rounded-0"
-    ngClass="{ 'rounded-top': i == 0, 'rounded-bottom': i == units.length - 1}"
     [style]="'background-color:' + unit.color1 + ';'"
     (click)="unitCollapse.toggle()"
     [attr.aria-expanded]="!this.getCollapseStatus(unit.unitId)">
@@ -21,9 +20,8 @@
     @for (idol of unit.idols; track $index) {
     <a
       class="ps-4 list-group-item-action list-group-item"
-      [ngClass]="{ active: this.currentIdolID === idol.idolId }"
+      [ngClass]="{ 'active': this.currentIdolID == idol.idolId }"
       routerLink="/idolinfo"
-      routerLinkActive="active"
       ariaCurrentWhenActive="page"
       [queryParams]="{ idolid: idol.idolId }"
       (click)="this.onIdolClicked()">

@@ -1,11 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { NgbAccordionConfig, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+
+import { UtilityService } from '../../../service/utility/utility.service';
+
 import { CharlistComponent } from '../charlist/charlist.component';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
   imports: [
+    CommonModule,
     CharlistComponent,
     NgbAccordionModule
   ],
@@ -25,16 +30,17 @@ export class SidebarComponent {
   title!: string;
 
   constructor(
-    config: NgbAccordionConfig
+    config: NgbAccordionConfig,
+    private utilsService: UtilityService
   ) {
     config.closeOthers = true;
     config.destroyOnHide = false;
   }
 
   ngOnInit(): void {
-    //this.utilsService.mobileTitle.subscribe((title: string) => {
-    //  this.title = title;
-    //});
+    this.utilsService.mobileTitle.subscribe((title: string) => {
+      this.title = title;
+    });
   }
 
   onSideBarClick() {
