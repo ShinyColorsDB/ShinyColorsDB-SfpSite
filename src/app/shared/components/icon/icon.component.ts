@@ -1,8 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Assets, Application, Sprite } from 'pixi.js';
-
 import { ShinyColorsSfpUrlService } from '../../../service/shinycolors-sfp-url/shiny-colors-sfp-url.service';
 
 import { Idol } from '../../interfaces/idol';
@@ -15,8 +13,9 @@ import { Idol } from '../../interfaces/idol';
   templateUrl: './icon.component.html',
   styleUrl: './icon.component.css'
 })
-export class IconComponent implements AfterViewInit, OnChanges {
+export class IconComponent {
 
+  /*
   @Input()
   idolInfo!: Idol;
 
@@ -76,4 +75,5 @@ export class IconComponent implements AfterViewInit, OnChanges {
 
     this.app.stage.addChild(icon);
   }
+  */
 }

@@ -13,7 +13,7 @@ import { UtilityService } from '../../../service/utility/utility.service';
 import { IconComponent } from '../../components/icon/icon.component';
 import { IdolSkillComponent } from '../../components/idol-skill/idol-skill.component';
 
-import { IdolSkill, PotentialLiveSkill, ProduceIdol } from '../../interfaces/common';
+import { IdolSkill, PotentialLiveSkill, PotentialLiveSkillLevel, ProduceIdol } from '../../interfaces/common';
 
 @Component({
   selector: 'app-p-info',
@@ -22,7 +22,8 @@ import { IdolSkill, PotentialLiveSkill, ProduceIdol } from '../../interfaces/com
   templateUrl: './p-info.component.html',
   styleUrl: './p-info.component.css',
   host: {
-    class: "col-xxl-10 col-lg-9 col-md-7 col-sm-12 overflow-auto vh-100 overflow-auto"
+    class: "col-xxl-10 col-lg-9 col-md-7 col-sm-12 overflow-auto vh-100 overflow-auto",
+    ngSkipHydration: 'true'
   }
 })
 export class PInfoComponent implements OnInit {
@@ -48,6 +49,7 @@ export class PInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
+      if (!params['cardId']) { return; }
       this.cardId = Number(params['cardId']);
 
       this.scSfpApiService.getProduceInfo(this.cardId)
@@ -102,5 +104,36 @@ export class PInfoComponent implements OnInit {
 
   getCollapseStatus(skillIndex: number): boolean {
     return this.skillCollapseMap.get(skillIndex) || false;
+  }
+
+  getSortedIdolSkillList() {
+    return this.cardInfo.idolSkillList.sort((a, b) => {
+      return a.unlockPremiseEvolutionLevel - b.unlockPremiseEvolutionLevel;
+    });
+  }
+
+  parsePotentialSkillEffect(n: PotentialLiveSkill) {
+    let r = new Map<string, string[]>();
+    n.levelList.forEach(e => {
+      e.parameterList.forEach(p => {
+        if (r.has(p.liveSkillType)) {
+          if (p?.value) {
+            r.get(p.liveSkillType)!.push(`${p.value!}`);
+          }
+          else {
+            r.get(p.liveSkillType)!.push(`${p.millisecond / 1000}秒`);
+          }
+        }
+        else {
+          if (p?.value) {
+            r.set(p.liveSkillType, [`${p.value!}`]);
+          }
+          else {
+            r.set(p.liveSkillType, [`${p.millisecond / 1000}秒`]);
+          }
+        }
+      });
+    });
+    return r;
   }
 }

@@ -41,6 +41,7 @@ export class SInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
+      if (!params['cardId']) { return; }
       this.cardId = Number(params['cardId']);
 
       this.scSfpApiService.getSupportInfo(this.cardId)

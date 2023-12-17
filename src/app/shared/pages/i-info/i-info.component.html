@@ -3,7 +3,9 @@
     <div class="row">
       <div class="col-12 pt-2 d-block">
         <h1 class="w-100 d-none d-md-block text-center">{{this.idolInfo.idolName}}</h1>
-        <app-icon class="img-fluid d-block mx-auto" [idolInfo]="this.idolInfo"></app-icon>
+        <div class="w-100 d-flex" id="iconDiv">
+          <img [src]="this.getIconUrl()" alt="" class="img-fluid mx-auto">
+        </div>
       </div>
       <div class="col-12 d-block">
         <table class="table w-100">

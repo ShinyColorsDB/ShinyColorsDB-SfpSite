@@ -226,3 +226,23 @@ export type SupportCharacter = {
 
     mlSupportCharaText_Name: string;
 } & CharacterInfo;
+
+export type SfpCharacterBasicInfo = {
+    char_hiragana: string,
+    char_nickName: string,
+    char_age: number,
+    char_bloodType: string,
+    char_birthday: string,
+    char_starSign: string,
+    char_height: number,
+    char_weight: number,
+    char_bust: number,
+    char_waist: number,
+    char_hip: number,
+    char_hand: string,
+    char_birthPlace: string,
+    char_hobby: string,
+    char_specialSkill: string,
+    char_color1: string,
+    char_color2: string
+}

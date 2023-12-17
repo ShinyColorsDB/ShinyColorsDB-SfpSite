@@ -1,4 +1,5 @@
-<div class="row d-flex justify-content-center" *ngIf="this.cardInfo">
+@if (this.cardInfo) {
+<div class="row d-flex justify-content-center">
   <h1 class="col-12 mt-2">{{this.cardInfo.mlProduceIdolText_Name}} {{this.cardInfo.mlCharacterText_Name}}</h1>
   <div class="col-xl-4 col-sm-12 container row justify-content-center">
     <div class="col-12 justify-content-center">
@@ -44,16 +45,17 @@
       </div>
       <div class="card-body" [ngClass]="{'d-xl-none': this.current !== 1}">
         <h3 class="d-xs-block d-xl-none">アイドルのスキル</h3>
-        <div ngbAccordion>
-          <div ngbAccordionItem *ngFor="let item of this.cardInfo.idolSkillList">
+        <div ngbAccordion [closeOthers]="false">
+          @for (item of this.getSortedIdolSkillList(); track $index) {
+          <div ngbAccordionItem>
             <div ngbAccordionHeader>
               <button ngbAccordionButton>
                 <div class="d-inline-block position-relative text-center">
-                  <img [src]="this.getIdolSkillCostIcon()" alt width="30px" height="34px">
-                  <span class="position-absolute top-50 start-50 translate-middle text-white">{{item.idolSkillActionEffectList.at(0)!.cost}}</span>
+                  <img [src]="this.getIdolSkillCostIcon()" alt width="30" height="34">
+                  <span class="position-absolute top-50 start-50 translate-middle text-white">{{item.idolSkillActionEffectList.at(-1)!.cost || 0}}</span>
                 </div>
                 <div class="d-inline-block ps-2 pe-2">
-                  <img width="50px" height="50px" class="img-fluid"
+                  <img width="50" height="50" class="img-fluid"
                     [src]="this.getMacroSkillIcon(item)" alt>
                 </div>
                 <div class="d-inline-block ps-2 pe-2">
@@ -64,24 +66,28 @@
             <div ngbAccordionCollapse>
               <div ngbAccordionBody>
                 <ul class="list-group">
-                  @for(skillEffect of item.idolSkillActionEffectList; track $index) {
+                  @for (skillEffect of item.idolSkillActionEffectList; track $index) {
+                  @if (skillEffect) {
                   <li class="list-group-item">
-                    <div class="d-inline-block">
-                      Lv
+                    <div class="d-inline-block align-middle">
+                      Lv {{skillEffect.level || 0}}
                     </div>
-                    <div class="d-inline-block position-relative text-center ps-2 pe-2">
-                      <img [src]="this.getIdolSkillCostIcon()" alt width="30px" height="34px">
-                      <span class="position-absolute top-50 start-50 translate-middle text-white"> </span>
+                    <div class="d-inline-block position-relative text-center ps-2 pe-2 align-middle">
+                      <img [src]="this.getIdolSkillCostIcon()" alt width="30" height="34">
+                      <span class="position-absolute top-50 start-50 translate-middle text-white">{{skillEffect.cost || 0}}</span>
                     </div>
-                    <div class="d-inline-block ps-2 pe-2">
-
+                    <div class="d-inline-block ps-2 pe-2 align-middle">
+                      @for (j of skillEffect.actionEffectList; track $index) {
+                      <div [innerHTML]="j.mlProduceCard_Description"></div>
+                      }
                     </div>
                   </li>
-                  }
+                  }}
                 </ul>
               </div>
             </div>
           </div>
+          }
         </div>
       </div>
       <div class="card-body" [ngClass]="{'d-xl-none': this.current !== 2}">
@@ -114,7 +120,7 @@
               <tbody>
                 <tr>
                   <td>
-                    <img width="20px" height="20px" class="img-fluid d-inline-block"
+                    <img width="20" height="20" class="img-fluid d-inline-block"
                       [src]="this.getPotentialSkillIcon(item)" alt>
                     {{item.mlPotentialLiveSkillText_Title}}
                   </td>
@@ -126,6 +132,18 @@
                     </div>
                   </td>
                 </tr>
+                <tr>
+                  <td>
+                    <div>各LV</div>
+                    @for (i of this.parsePotentialSkillEffect(item); track $index) {
+                    <div>
+                      @for(j of i; track $index;) {
+                      {{j}}
+                      }
+                    </div>
+                    }
+                  </td>
+                </tr>
               </tbody>
             </table>
           </li>
@@ -135,3 +153,4 @@
     </div>
   </div>
 </div>
+}

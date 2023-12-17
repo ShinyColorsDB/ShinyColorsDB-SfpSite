@@ -23,7 +23,7 @@ import { CharacterAlbumMetadata, ProduceIdolBrief, SupportCharacterBrief } from 
   templateUrl: './i-info.component.html',
   styleUrl: './i-info.component.css',
   host: {
-    class: "col-xxl-10 col-lg-9 col-md-7 col-sm-12 overflow-auto vh-100 overflow-auto"
+    class: "col-xxl-10 col-lg-9 col-md-7 col-sm-12 overflow-auto vh-100"
   }
 })
 export class IInfoComponent {
@@ -50,6 +50,7 @@ export class IInfoComponent {
     private utilsService: UtilityService
   ) {
     this.route.queryParams.subscribe((params) => {
+      if (!params['idolid']) { return; }
       this.idolId = Number(params['idolid']);
 
       this.scSfpApiService.getIdolInfo(this.idolId)
