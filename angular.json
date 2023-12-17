@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/shiny-colors-db-sfp-site",
+            "outputPath": "dist/ShinyColorsDB-SfpSite",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
