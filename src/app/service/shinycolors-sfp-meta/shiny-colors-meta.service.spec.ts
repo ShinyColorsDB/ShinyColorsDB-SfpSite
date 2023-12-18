@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ShinyColorsMetaService } from './shiny-colors-meta.service';
+import { ShinyColorsSfpMetaService } from './shiny-colors-meta.service';
 
-describe('ShinyColorsMetaService', () => {
-  let service: ShinyColorsMetaService;
+describe('ShinyColorsSfpMetaService', () => {
+  let service: ShinyColorsSfpMetaService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ShinyColorsMetaService);
+    service = TestBed.inject(ShinyColorsSfpMetaService);
   });
 
   it('should be created', () => {

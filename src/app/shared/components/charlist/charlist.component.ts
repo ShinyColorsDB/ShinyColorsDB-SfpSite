@@ -1,15 +1,13 @@
 import { Component, EventEmitter, Inject, Input, Output, PLATFORM_ID } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 
 import { Unit } from '../../interfaces/unit';
 
 import { ShinyColorsSfpAPIService } from '../../../service/shinycolors-sfp-api/shinycolors-sfp-api.service';
 import { ShinyColorsSfpUrlService } from '../../../service/shinycolors-sfp-url/shiny-colors-sfp-url.service';
-import { UtilityService } from '../../../service/utility/utility.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-
+import { ShinyColorsSfpUtilService } from '../../../service/shinycolors-sfp-util/shiny-colors-util.service';
 
 @Component({
   selector: 'app-charlist',
@@ -41,12 +39,13 @@ export class CharlistComponent {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private utilsService: UtilityService,
+    private scSfpUtilService: ShinyColorsSfpUtilService,
     private scSfpApiService: ShinyColorsSfpAPIService,
     public scUrlService: ShinyColorsSfpUrlService
   ) {
     this.scSfpApiService.getUnitList().subscribe((data) => {
       this.units = data;
+      this.scSfpUtilService.updateUnits(data);
       this.units.forEach(e => {
         this.collapseStatus.set(e.unitId, true);
       });
@@ -54,7 +53,7 @@ export class CharlistComponent {
   }
 
   ngOnInit(): void {
-    this.utilsService.activeIds.subscribe((data) => {
+    this.scSfpUtilService.activeIds.subscribe((data) => {
       [this.currentIdolID, this.currentUnitID] = data;
       this.collapseStatus.set(this.currentUnitID, false);
     });

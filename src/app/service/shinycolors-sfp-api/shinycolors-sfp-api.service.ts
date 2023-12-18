@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+import { Observable, catchError, of } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 
-import { Observable, catchError, of, throwError } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { Unit } from '../../shared/interfaces/unit';
 import { Idol } from '../../shared/interfaces/idol';
 import { ProduceIdol, SupportCharacter } from '../../shared/interfaces/common';

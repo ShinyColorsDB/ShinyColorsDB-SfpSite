@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NgbAccordionConfig, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 
-import { UtilityService } from '../../../service/utility/utility.service';
+import { ShinyColorsSfpUtilService } from '../../../service/shinycolors-sfp-util/shiny-colors-util.service';
 
 import { CharlistComponent } from '../charlist/charlist.component';
 
@@ -31,14 +31,14 @@ export class SidebarComponent {
 
   constructor(
     config: NgbAccordionConfig,
-    private utilsService: UtilityService
+    private scSfpUtilService: ShinyColorsSfpUtilService
   ) {
     config.closeOthers = true;
     config.destroyOnHide = false;
   }
 
   ngOnInit(): void {
-    this.utilsService.mobileTitle.subscribe((title: string) => {
+    this.scSfpUtilService.mobileTitle.subscribe((title: string) => {
       this.title = title;
     });
   }

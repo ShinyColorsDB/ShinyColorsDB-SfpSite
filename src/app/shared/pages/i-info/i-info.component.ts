@@ -7,9 +7,8 @@ import { catchError, of } from 'rxjs';
 
 import { ShinyColorsSfpAPIService } from '../../../service/shinycolors-sfp-api/shinycolors-sfp-api.service';
 import { ShinyColorsSfpUrlService } from '../../../service/shinycolors-sfp-url/shiny-colors-sfp-url.service';
-import { UtilityService } from '../../../service/utility/utility.service';
+import { ShinyColorsSfpUtilService } from '../../../service/shinycolors-sfp-util/shiny-colors-util.service';
 
-import { IconComponent } from '../../components/icon/icon.component';
 import { CardItemComponent } from '../../components/card-item/card-item.component';
 
 import { Idol } from '../../interfaces/idol';
@@ -19,7 +18,7 @@ import { CharacterAlbumMetadata, ProduceIdolBrief, SupportCharacterBrief } from 
 @Component({
   selector: 'app-i-info',
   standalone: true,
-  imports: [CommonModule, IconComponent, CardItemComponent],
+  imports: [CommonModule, CardItemComponent],
   templateUrl: './i-info.component.html',
   styleUrl: './i-info.component.css',
   host: {
@@ -47,7 +46,7 @@ export class IInfoComponent {
     private title: Title,
     private scSfpApiService: ShinyColorsSfpAPIService,
     private scSfpUrlService: ShinyColorsSfpUrlService,
-    private utilsService: UtilityService
+    private scSfpUtilService: ShinyColorsSfpUtilService
   ) {
     this.route.queryParams.subscribe((params) => {
       if (!params['idolid']) { return; }
@@ -69,8 +68,8 @@ export class IInfoComponent {
           //  this.meta.updateTag(e);
           //});
 
-          this.utilsService.emitActiveIds([this.idolId, this.idolInfo.unitId]);
-          this.utilsService.emitMobileTitle(this.idolInfo.idolName);
+          this.scSfpUtilService.emitActiveIdolUnit(this.idolId);
+          this.scSfpUtilService.emitMobileTitle(this.idolInfo.idolName);
 
           //this.idolInfo.cardLists.forEach((card) => {
           //  this.classifyType(card);

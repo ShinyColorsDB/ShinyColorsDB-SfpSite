@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 import { catchError, of } from 'rxjs';
 
-import { UtilityService } from '../../../service/utility/utility.service';
+import { ShinyColorsSfpUtilService } from '../../../service/shinycolors-sfp-util/shiny-colors-util.service';
 import { ShinyColorsSfpAPIService } from '../../../service/shinycolors-sfp-api/shinycolors-sfp-api.service';
 import { ShinyColorsSfpUrlService } from '../../../service/shinycolors-sfp-url/shiny-colors-sfp-url.service';
+import { ShinyColorsSfpMetaService } from '../../../service/shinycolors-sfp-meta/shiny-colors-meta.service';
+
 import { SupportCharacter } from '../../interfaces/common';
 
 @Component({
@@ -32,7 +34,9 @@ export class SInfoComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private title: Title,
-    private utilService: UtilityService,
+    private meta: Meta,
+    private scSfpUtilService: ShinyColorsSfpUtilService,
+    private scSfpMetaService: ShinyColorsSfpMetaService,
     private scSfpApiService: ShinyColorsSfpAPIService,
     private scSfpUrlService: ShinyColorsSfpUrlService,
   ) {
@@ -55,13 +59,12 @@ export class SInfoComponent implements OnInit {
           this.cardInfo = data;
 
           this.title.setTitle(`${this.cardInfo.mlSupportCharaText_Name} ${this.cardInfo.mlCharacterText_Name}`);
-          //this.utilsService.generateIdolMeta(this.idolInfo).forEach(e => {
-          //  this.meta.updateTag(e);
-          //});
+          this.scSfpMetaService.getSupporteMeta(this.cardInfo).forEach(e => {
+            this.meta.updateTag(e);
+          });
 
-          //this.utilService.emitActiveIds([this.cardInfo.mstIdolId, this.cardInfo.mstUnitId]);
-          this.utilService.emitMobileTitle(this.cardInfo.mlSupportCharaText_Name);
-
+          this.scSfpUtilService.emitActiveIdolUnit(this.cardInfo.mstCharacterInfoId);
+          this.scSfpUtilService.emitMobileTitle(this.cardInfo.mlSupportCharaText_Name);
         });
     });
   }

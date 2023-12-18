@@ -1,9 +1,10 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { Unit } from '../../shared/interfaces/unit';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UtilityService {
+export class ShinyColorsSfpUtilService {
 
   constructor() { }
 
@@ -13,8 +14,20 @@ export class UtilityService {
 
   currentModal = new EventEmitter<number>();
 
-  emitActiveIds(ids: number[]) {
-    this.activeIds.emit(ids);
+  units: Unit[] = [];
+
+  updateUnits(units: Unit[]) {
+    this.units = units;
+  }
+
+  emitActiveIdolUnit(id: number) {
+    this.units.forEach((e, index) => {
+      e.idols.forEach(i => {
+        if (i.idolId === id) {
+          this.activeIds.emit([id, index + 1]);
+        }
+      });
+    });
   }
 
   emitMobileTitle(title: string, stripe: boolean = false) {
