@@ -1,18 +1,19 @@
 import { AfterViewInit, Component, ElementRef, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 import { catchError, of } from 'rxjs';
 
 import { ShinyColorsSfpAPIService } from '../../../service/shinycolors-sfp-api/shinycolors-sfp-api.service';
 import { ShinyColorsSfpUrlService } from '../../../service/shinycolors-sfp-url/shiny-colors-sfp-url.service';
 import { ShinyColorsSfpUtilService } from '../../../service/shinycolors-sfp-util/shiny-colors-util.service';
+import { ShinyColorsSfpMetaService } from '../../../service/shinycolors-sfp-meta/shiny-colors-meta.service';
 
 import { CardItemComponent } from '../../components/card-item/card-item.component';
 
-import { Idol } from '../../interfaces/idol';
 import { CharacterAlbumMetadata, ProduceIdolBrief, SupportCharacterBrief } from '../../interfaces/album';
+import { SfpCharacterBasicInfo } from '../../interfaces/profile';
 
 
 @Component({
@@ -26,7 +27,7 @@ import { CharacterAlbumMetadata, ProduceIdolBrief, SupportCharacterBrief } from 
   }
 })
 export class IInfoComponent {
-  idolInfo!: Idol;
+  idolProfile!: SfpCharacterBasicInfo;
   idolAlbum!: CharacterAlbumMetadata;
 
   idolId!: number;
@@ -44,15 +45,17 @@ export class IInfoComponent {
     private route: ActivatedRoute,
     private router: Router,
     private title: Title,
+    private meta: Meta,
     private scSfpApiService: ShinyColorsSfpAPIService,
     private scSfpUrlService: ShinyColorsSfpUrlService,
-    private scSfpUtilService: ShinyColorsSfpUtilService
+    private scSfpUtilService: ShinyColorsSfpUtilService,
+    private scSfpMetaService: ShinyColorsSfpMetaService
   ) {
     this.route.queryParams.subscribe((params) => {
       if (!params['idolid']) { return; }
       this.idolId = Number(params['idolid']);
 
-      this.scSfpApiService.getIdolInfo(this.idolId)
+      this.scSfpApiService.getIdolProfile(this.idolId)
         .pipe(catchError(err => {
           this.router.navigate(['/notfound'])
           return of(null);
@@ -60,35 +63,21 @@ export class IInfoComponent {
         .subscribe((data) => {
           if (!data) { return; }
 
-          this.togglePS = true;
-          this.idolInfo = data;
-
-          this.title.setTitle(this.idolInfo.idolName);
-          //this.utilsService.generateIdolMeta(this.idolInfo).forEach(e => {
-          //  this.meta.updateTag(e);
-          //});
+          this.idolProfile = data;
+          this.title.setTitle(this.idolProfile.char_name);
 
           this.scSfpUtilService.emitActiveIdolUnit(this.idolId);
-          this.scSfpUtilService.emitMobileTitle(this.idolInfo.idolName);
+          this.scSfpUtilService.emitMobileTitle(this.idolProfile.char_name);
 
-          //this.idolInfo.cardLists.forEach((card) => {
-          //  this.classifyType(card);
-          //});
-        });
+          this.scSfpMetaService.getIdolMeta(this.idolProfile).forEach(e => {
+            this.meta.updateTag(e);
+          });
 
-      this.scSfpApiService.getIdolCardList(this.idolId)
-        .pipe(catchError(err => {
-          this.router.navigate(['/notfound'])
-          return of(null);
-        }))
-        .subscribe((data) => {
-          if (!data) { return; }
-
-          this.idolAlbum = data;
+          this.togglePS = true;
 
           this.categoryReset();
 
-          this.idolAlbum.produceIdolBriefs.forEach((card) => {
+          this.idolProfile.produceIdolBriefs.forEach((card) => {
             switch (card.initialStar) {
               case 3:
                 this.P_3.push(card);
@@ -101,7 +90,7 @@ export class IInfoComponent {
                 break;
             }
           });
-          this.idolAlbum.supportCharacterBriefs.forEach((card) => {
+          this.idolProfile.supportCharacterBriefs.forEach((card) => {
             switch (card.rarity) {
               case "ssr":
                 this.S_SSR.push(card);
@@ -114,6 +103,17 @@ export class IInfoComponent {
                 break;
             }
           });
+        })
+
+      this.scSfpApiService.getIdolCardList(this.idolId)
+        .pipe(catchError(err => {
+          this.router.navigate(['/notfound'])
+          return of(null);
+        }))
+        .subscribe((data) => {
+          if (!data) { return; }
+
+
         });
     });
   }

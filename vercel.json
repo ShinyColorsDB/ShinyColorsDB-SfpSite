@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "public": true,
+  "name": "shiny-colors-db-sfp-site",
+  "rewrites": [
+    { "source": "/sitemap.xml", "destination": "https://prism.sc-viewer.top/sitemap.xml"},
+    { "source": "/(.*)", "destination": "/api" }
+  ],
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/ShinyColorsDB-SfpSite/browser/**"
+    }
+  }
+}

@@ -10,6 +10,7 @@ import { Unit } from '../../shared/interfaces/unit';
 import { Idol } from '../../shared/interfaces/idol';
 import { ProduceIdol, SupportCharacter } from '../../shared/interfaces/common';
 import { CharacterAlbumMetadata } from '../../shared/interfaces/album';
+import { SfpCharacterBasicInfo } from '../../shared/interfaces/profile';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +44,14 @@ export class ShinyColorsSfpAPIService {
         responseType: 'json',
       })
       .pipe(catchError(this.handleError<Idol>('getIdolInfo')));
+  }
+
+  getIdolProfile(idolID: number): Observable<SfpCharacterBasicInfo> {
+    return this.http
+      .get<SfpCharacterBasicInfo>(`${environment.api2Url}album/${idolID}`, {
+        responseType: 'json',
+      })
+      .pipe(catchError(this.handleError<SfpCharacterBasicInfo>('getIdolProfile')));
   }
 
   getIdolCardList(IdolID: number): Observable<CharacterAlbumMetadata> {

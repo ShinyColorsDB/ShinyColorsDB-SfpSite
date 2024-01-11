@@ -1,9 +1,9 @@
-@if (this.idolInfo && this.idolAlbum) {
+@if (this.idolProfile) {
 <div class="row m-0 p-0">
   <div class="d-flex col-xl-4 col-lg-12 col-md-12 h-100 container justify-content-center" id="divIdolData">
     <div class="row">
       <div class="col-12 pt-2 d-block">
-        <h1 class="w-100 d-none d-md-block text-center">{{this.idolInfo.idolName}}</h1>
+        <h1 class="w-100 d-none d-md-block text-center">{{this.idolProfile.char_name}}</h1>
         <div class="w-100 d-flex" id="iconDiv">
           <img [src]="this.getIconUrl()" alt="" class="img-fluid mx-auto">
         </div>
@@ -14,59 +14,59 @@
           <tbody>
             <tr class="row">
               <th class="col-2"></th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.hiragana}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.char_hiragana}}</td>
             </tr>
             <tr class="row">
               <th class="col-2 d-flex align-items-center">姓名</th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.idolName}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.char_name}}</td>
             </tr>
             <tr class="row">
               <th class="col-2 d-flex align-items-center">所屬</th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.unit.unitName}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.mlUnitText_Name}}</td>
             </tr>
             <tr class="row">
               <th class="col-2 d-flex align-items-center">生日</th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.birthday}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.char_birthday}}</td>
             </tr>
             <tr class="row">
               <th class="col-2 d-flex align-items-center">年齡</th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.age}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.char_age}}</td>
             </tr>
             <tr class="row">
               <th class="col-2 d-flex align-items-center">身高</th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.height}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.char_height}}</td>
             </tr>
             <tr class="row">
               <th class="col-2 d-flex align-items-center">體重</th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.weight}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.char_weight}}</td>
             </tr>
             <tr class="row">
               <th class="col-2 d-flex align-items-center">三圍</th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.threeSize}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.char_bust}}/{{this.idolProfile.char_waist}}/{{this.idolProfile.char_hip}}</td>
             </tr>
             <tr class="row">
               <th class="col-2 d-flex align-items-center">血型</th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.bloodType}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.char_bloodType}}</td>
             </tr>
             <tr class="row">
               <th class="col-2 d-flex align-items-center">星座</th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.starSign}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.char_starSign}}</td>
             </tr>
             <tr class="row">
               <th class="col-2 d-flex align-items-center">出身</th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.birthPlace}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.char_birthPlace}}</td>
             </tr>
             <tr class="row">
               <th class="col-2 d-flex align-items-center">興趣</th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.interest}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.char_hobby}}</td>
             </tr>
             <tr class="row">
               <th class="col-2 d-flex align-items-center">特技</th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.specialSkill}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.char_specialSkill}}</td>
             </tr>
             <tr class="row">
               <th class="col-2 d-flex align-items-center">聲優</th>
-              <td class="col-10 d-flex align-items-center">{{this.idolInfo.cv}}</td>
+              <td class="col-10 d-flex align-items-center">{{this.idolProfile.char_cv}}</td>
             </tr>
           </tbody>
         </table>
@@ -115,19 +115,19 @@
             @if (this.S_SSR.length) {
             <h3 class="mt-2">SSR</h3>
             @for (i of this.S_SSR; track $index) {
-              <app-card-item class="col-lg-4 col-sm-12 pt-1 pb-1"
+              <app-card-item class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 pt-1 pb-1"
               [pathType]="'/sinfo'" [cardId]="i.mstSupportCharacterId" [cardName]="i.mlSupportCharaText_Name"></app-card-item>
             }}
             @if (this.S_SR.length) {
             <h3 class="mt-2">SR</h3>
             @for (i of this.S_SR; track $index) {
-              <app-card-item class="col-lg-4 col-sm-12 pt-1 pb-1"
+              <app-card-item class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 pt-1 pb-1"
               [pathType]="'/sinfo'" [cardId]="i.mstSupportCharacterId" [cardName]="i.mlSupportCharaText_Name"></app-card-item>
             }}
             @if (this.S_R.length) {
             <h3 class="mt-2">R</h3>
             @for (i of this.S_R; track $index) {
-              <app-card-item class="col-lg-4 col-sm-12 pt-1 pb-1"
+              <app-card-item class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4 pt-1 pb-1"
               [pathType]="'/sinfo'" [cardId]="i.mstSupportCharacterId" [cardName]="i.mlSupportCharaText_Name"></app-card-item>
             }}
           </div>

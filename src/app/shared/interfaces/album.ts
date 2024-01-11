@@ -1,7 +1,7 @@
-import { CharacterInfo, SfpCharacterBasicInfo } from "./common";
+import { CharacterInfo } from "./common";
 import { Rarity } from "./enum";
 
-export type CharacterAlbumMetadata = CharacterInfo & SfpCharacterBasicInfo & {
+export type CharacterAlbumMetadata = CharacterInfo & {
     mstUnitId?: number;
     mstIdolId?: number;
     mlUnitText_Name?: string;

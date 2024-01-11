@@ -28,8 +28,8 @@ import { ShinyColorsSfpUtilService } from '../../../service/shinycolors-sfp-util
 export class CharlistComponent {
   units: Array<Unit> = [];
   collapseStatus: Map<number, boolean> = new Map<number, boolean>();
-  currentIdolID: number = 1;
-  currentUnitID: number = 1;
+  currentIdolID: number = 0;
+  currentUnitID: number = 0;
 
   @Input()
   public isBigScreen: boolean = false;
