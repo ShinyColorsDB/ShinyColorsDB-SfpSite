@@ -23,6 +23,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.meta.addTags(this.scSfpMetaService.getDefaultMeta());
+    this.scSfpMetaService.getDefaultMeta().forEach((e) => {
+      if (this.meta.getTag(`name="${e.name}"`) == null) {
+        this.meta.addTag(e);
+      }
+      else {
+        this.meta.updateTag(e);
+      }
+    });
   }
 }

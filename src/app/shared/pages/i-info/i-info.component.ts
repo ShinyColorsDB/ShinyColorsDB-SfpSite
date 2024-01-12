@@ -72,7 +72,12 @@ export class IInfoComponent implements OnInit {
           this.scSfpUtilService.emitMobileTitle(this.idolProfile.char_name);
 
           this.scSfpMetaService.getIdolMeta(this.idolProfile).forEach(e => {
-            this.meta.updateTag(e);
+            if (this.meta.getTag(`name="${e.name}"`) == null) {
+              this.meta.addTag(e);
+            }
+            else {
+              this.meta.updateTag(e);
+            }
           });
 
           this.togglePS = true;

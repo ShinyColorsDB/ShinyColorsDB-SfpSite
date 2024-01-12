@@ -65,7 +65,12 @@ export class PInfoComponent implements OnInit {
 
           this.title.setTitle(this.cardInfo.mlProduceIdolText_Name);
           this.scSfpMetaService.getProduceMeta(this.cardInfo).forEach(e => {
-            this.meta.updateTag(e);
+            if (this.meta.getTag(`name="${e.name}"`) == null) {
+              this.meta.addTag(e);
+            }
+            else {
+              this.meta.updateTag(e);
+            }
           });
 
           this.scSfpUtilService.emitActiveIdolUnit(this.cardInfo.mstIdolId);

@@ -59,8 +59,14 @@ export class SInfoComponent implements OnInit {
           this.cardInfo = data;
 
           this.title.setTitle(`${this.cardInfo.mlSupportCharaText_Name} ${this.cardInfo.mlCharacterText_Name}`);
+
           this.scSfpMetaService.getSupporteMeta(this.cardInfo).forEach(e => {
-            this.meta.updateTag(e);
+            if (this.meta.getTag(`name="${e.name}"`) == null) {
+              this.meta.addTag(e);
+            }
+            else {
+              this.meta.updateTag(e);
+            }
           });
 
           this.scSfpUtilService.emitActiveIdolUnit(this.cardInfo.mstCharacterInfoId);
