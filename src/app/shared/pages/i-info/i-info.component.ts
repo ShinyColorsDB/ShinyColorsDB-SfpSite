@@ -26,7 +26,7 @@ import { SfpCharacterBasicInfo } from '../../interfaces/profile';
     class: "col-xxl-10 col-lg-9 col-md-8 col-sm-12 overflow-auto vh-100"
   }
 })
-export class IInfoComponent {
+export class IInfoComponent implements OnInit {
   idolProfile!: SfpCharacterBasicInfo;
   idolAlbum!: CharacterAlbumMetadata;
 
@@ -50,7 +50,9 @@ export class IInfoComponent {
     private scSfpUrlService: ShinyColorsSfpUrlService,
     private scSfpUtilService: ShinyColorsSfpUtilService,
     private scSfpMetaService: ShinyColorsSfpMetaService
-  ) {
+  ) { }
+
+  ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       if (!params['idolid']) { return; }
       this.idolId = Number(params['idolid']);
@@ -103,17 +105,6 @@ export class IInfoComponent {
                 break;
             }
           });
-        })
-
-      this.scSfpApiService.getIdolCardList(this.idolId)
-        .pipe(catchError(err => {
-          this.router.navigate(['/notfound'])
-          return of(null);
-        }))
-        .subscribe((data) => {
-          if (!data) { return; }
-
-
         });
     });
   }
