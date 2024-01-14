@@ -55,9 +55,8 @@ export class PInfoComponent implements OnInit {
           return of(null);
         }))
         .subscribe((data) => {
-          if (!data) { return; }
 
-          this.cardInfo = data;
+          this.cardInfo = data!;
 
           this.title.setTitle(this.cardInfo.mlProduceIdolText_Name);
           this.scSfpMetaService.getProduceMeta(this.cardInfo).forEach(e => {
