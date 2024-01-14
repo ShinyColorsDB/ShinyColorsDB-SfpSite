@@ -40,10 +40,6 @@ export class SInfoComponent implements OnInit {
     private scSfpApiService: ShinyColorsSfpAPIService,
     private scSfpUrlService: ShinyColorsSfpUrlService,
   ) {
-
-  }
-
-  ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       if (!params['cardId']) { return; }
       this.cardId = Number(params['cardId']);
@@ -73,6 +69,10 @@ export class SInfoComponent implements OnInit {
           this.scSfpUtilService.emitMobileTitle(this.cardInfo.mlSupportCharaText_Name);
         });
     });
+  }
+
+  ngOnInit(): void {
+
   }
 
   getPictureUrl(): string {

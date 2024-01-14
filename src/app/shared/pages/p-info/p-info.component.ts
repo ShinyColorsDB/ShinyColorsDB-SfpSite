@@ -45,10 +45,6 @@ export class PInfoComponent implements OnInit {
     private scSfpApiService: ShinyColorsSfpAPIService,
     private scSfpUrlService: ShinyColorsSfpUrlService,
   ) {
-
-  }
-
-  ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       if (!params['cardId']) { return; }
       this.cardId = Number(params['cardId']);
@@ -65,7 +61,7 @@ export class PInfoComponent implements OnInit {
 
           this.title.setTitle(this.cardInfo.mlProduceIdolText_Name);
           this.scSfpMetaService.getProduceMeta(this.cardInfo).forEach(e => {
-            if (this.meta.getTag(`name="${e.name}"`) == null) {
+            if (!this.meta.getTag(`name="${e.name}"`)) {
               this.meta.addTag(e);
             }
             else {
@@ -81,6 +77,10 @@ export class PInfoComponent implements OnInit {
           });
         });
     });
+  }
+
+  ngOnInit(): void {
+
   }
 
   getPictureUrl(): string {
