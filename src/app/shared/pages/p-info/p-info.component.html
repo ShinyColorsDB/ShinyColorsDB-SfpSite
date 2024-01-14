@@ -1,154 +1,156 @@
-<div class="row d-flex justify-content-center">
-  <h1 class="col-12 mt-2 d-none d-md-block lineGothic">{{this.cardInfo.mlProduceIdolText_Name}} {{this.cardInfo.mlCharacterText_Name}}</h1>
-  <div class="col-xl-4 col-sm-12 container row justify-content-center">
-    <div class="col-12 justify-content-center">
-      <div id="picture" class="w-100 d-flex justify-content-center">
-        <img [src]="this.getPictureUrl()" alt class="img-fluid">
+@if(this.cardInfo) {
+  <div class="row d-flex justify-content-center" >
+    <h1 class="col-12 mt-2 d-none d-md-block lineGothic">{{this.cardInfo.mlProduceIdolText_Name}} {{this.cardInfo.mlCharacterText_Name}}</h1>
+    <div class="col-xl-4 col-sm-12 container row justify-content-center">
+      <div class="col-12 justify-content-center">
+        <div id="picture" class="w-100 d-flex justify-content-center">
+          <img [src]="this.getPictureUrl()" alt class="img-fluid">
+        </div>
+        <table class="table table-bordered text-center mt-2">
+          <thead></thead>
+          <tbody>
+            <tr class="row">
+              <td class="col-3" style="background-color: crimson;">Vo</td>
+              <td class="col-3" style="background-color: cornflowerblue">Da</td>
+              <td class="col-3" style="background-color: chocolate;">Vi</td>
+              <td class="col-3" style="background-color: green;">Me</td>
+            </tr>
+            <tr class="row">
+              <td class="col-3">{{this.cardInfo.idolParameter!.vocal }}</td>
+              <td class="col-3">{{this.cardInfo.idolParameter!.dance}}</td>
+              <td class="col-3">{{this.cardInfo.idolParameter!.visual}}</td>
+              <td class="col-3">{{this.cardInfo.idolParameter!.mental}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <table class="table table-bordered text-center mt-2">
-        <thead></thead>
-        <tbody>
-          <tr class="row">
-            <td class="col-3" style="background-color: crimson;">Vo</td>
-            <td class="col-3" style="background-color: cornflowerblue">Da</td>
-            <td class="col-3" style="background-color: chocolate;">Vi</td>
-            <td class="col-3" style="background-color: green;">Me</td>
-          </tr>
-          <tr class="row">
-            <td class="col-3">{{this.cardInfo.idolParameter!.vocal }}</td>
-            <td class="col-3">{{this.cardInfo.idolParameter!.dance}}</td>
-            <td class="col-3">{{this.cardInfo.idolParameter!.visual}}</td>
-            <td class="col-3">{{this.cardInfo.idolParameter!.mental}}</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
-  </div>
-  <div class="col-xl-8 col-sm-12 mt-2">
-    <div class="card">
-      <div class="card-header d-none d-xl-block">
-        <ul class="nav nav-tabs card-header-tabs">
-          <li class="nav-item" (click)="this.current = 1">
-            <a href="javascript: void(0)" class="nav-link" [ngClass]="{'active': this.current === 1, 'disabled': this.current === 1}">アイドルのスキル</a>
-          </li>
-          <li class="nav-item" (click)="this.current = 2">
-            <a href="javascript: void(0)" class="nav-link" [ngClass]="{'active': this.current === 2, 'disabled': this.current === 2}">アイドルイベント</a>
-          </li>
-          <li class="nav-item" (click)="this.current = 3">
-            <a href="javascript: void(0)" class="nav-link" [ngClass]="{'active': this.current === 3, 'disabled': this.current === 3}">潜在ライブスキル</a>
-          </li>
-          <!--li class="nav-item" (click)="this.current = 4">
-            <a href="javascript: void(0)" class="nav-link" [ngClass]="{'active': this.current === 4, 'disabled': this.current === 4}">ステージ衣装</a>
-          </li-->
-        </ul>
-      </div>
-      <div class="card-body" [ngClass]="{'d-xl-none': this.current !== 1}">
-        <h3 class="d-xs-block d-xl-none">アイドルのスキル</h3>
-        <div ngbAccordion [closeOthers]="false">
-          @for (item of this.getSortedIdolSkillList(); track $index) {
-          <div ngbAccordionItem>
-            <div ngbAccordionHeader>
-              <button ngbAccordionButton>
-                <div class="d-inline-block position-relative text-center">
-                  <img [src]="this.getIdolSkillCostIcon()" alt width="30" height="34">
-                  <span class="position-absolute top-50 start-50 translate-middle text-white">{{item.idolSkillActionEffectList.at(-1)!.cost || 0}}</span>
+    <div class="col-xl-8 col-sm-12 mt-2">
+      <div class="card">
+        <div class="card-header d-none d-xl-block">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item" (click)="this.current = 1">
+              <a href="javascript: void(0)" class="nav-link" [ngClass]="{'active': this.current === 1, 'disabled': this.current === 1}">アイドルのスキル</a>
+            </li>
+            <li class="nav-item" (click)="this.current = 2">
+              <a href="javascript: void(0)" class="nav-link" [ngClass]="{'active': this.current === 2, 'disabled': this.current === 2}">アイドルイベント</a>
+            </li>
+            <li class="nav-item" (click)="this.current = 3">
+              <a href="javascript: void(0)" class="nav-link" [ngClass]="{'active': this.current === 3, 'disabled': this.current === 3}">潜在ライブスキル</a>
+            </li>
+            <!--li class="nav-item" (click)="this.current = 4">
+              <a href="javascript: void(0)" class="nav-link" [ngClass]="{'active': this.current === 4, 'disabled': this.current === 4}">ステージ衣装</a>
+            </li-->
+          </ul>
+        </div>
+        <div class="card-body" [ngClass]="{'d-xl-none': this.current !== 1}">
+          <h3 class="d-xs-block d-xl-none">アイドルのスキル</h3>
+          <div ngbAccordion [closeOthers]="false">
+            @for (item of this.getSortedIdolSkillList(); track $index) {
+            <div ngbAccordionItem>
+              <div ngbAccordionHeader>
+                <button ngbAccordionButton>
+                  <div class="d-inline-block position-relative text-center">
+                    <img [src]="this.getIdolSkillCostIcon()" alt width="30" height="34">
+                    <span class="position-absolute top-50 start-50 translate-middle text-white">{{item.idolSkillActionEffectList.at(-1)!.cost || 0}}</span>
+                  </div>
+                  <div class="d-inline-block ps-2 pe-2">
+                    <img width="50" height="50" class="img-fluid"
+                      [src]="this.getMacroSkillIcon(item)" alt>
+                  </div>
+                  <div class="d-inline-block ps-2 pe-2">
+                    <span>{{this.getSkillDescription(item)}}</span>
+                  </div>
+                </button>
+              </div>
+              <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  <ul class="list-group">
+                    @for (skillEffect of item.idolSkillActionEffectList; track $index) {
+                    @if (skillEffect) {
+                    <li class="list-group-item">
+                      <div class="d-inline-block align-middle">
+                        Lv {{skillEffect.level || 0}}
+                      </div>
+                      <div class="d-inline-block position-relative text-center ps-2 pe-2 align-middle">
+                        <img [src]="this.getIdolSkillCostIcon()" alt width="30" height="34">
+                        <span class="position-absolute top-50 start-50 translate-middle text-white">{{skillEffect.cost || 0}}</span>
+                      </div>
+                      <div class="d-inline-block ps-2 pe-2 align-middle">
+                        @for (j of skillEffect.actionEffectList; track $index) {
+                        <div [innerHTML]="j.mlProduceCard_Description"></div>
+                        }
+                      </div>
+                    </li>
+                    }}
+                  </ul>
                 </div>
-                <div class="d-inline-block ps-2 pe-2">
-                  <img width="50" height="50" class="img-fluid"
-                    [src]="this.getMacroSkillIcon(item)" alt>
-                </div>
-                <div class="d-inline-block ps-2 pe-2">
-                  <span>{{this.getSkillDescription(item)}}</span>
-                </div>
-              </button>
-            </div>
-            <div ngbAccordionCollapse>
-              <div ngbAccordionBody>
-                <ul class="list-group">
-                  @for (skillEffect of item.idolSkillActionEffectList; track $index) {
-                  @if (skillEffect) {
-                  <li class="list-group-item">
-                    <div class="d-inline-block align-middle">
-                      Lv {{skillEffect.level || 0}}
-                    </div>
-                    <div class="d-inline-block position-relative text-center ps-2 pe-2 align-middle">
-                      <img [src]="this.getIdolSkillCostIcon()" alt width="30" height="34">
-                      <span class="position-absolute top-50 start-50 translate-middle text-white">{{skillEffect.cost || 0}}</span>
-                    </div>
-                    <div class="d-inline-block ps-2 pe-2 align-middle">
-                      @for (j of skillEffect.actionEffectList; track $index) {
-                      <div [innerHTML]="j.mlProduceCard_Description"></div>
-                      }
-                    </div>
-                  </li>
-                  }}
-                </ul>
               </div>
             </div>
+            }
           </div>
-          }
         </div>
-      </div>
-      <div class="card-body" [ngClass]="{'d-xl-none': this.current !== 2}">
-        <h3 class="d-xs-block d-xl-none">アイドルイベント</h3>
-        <ul class="list-group">
-          @for (item of this.cardInfo.produceIdolEventList; track $index) {
-          <li class="list-group-item">
-            <table>
-              <thead></thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <h3>{{item.mlADVInfo_Title}}</h3>
-                    <div>{{item.mlADVInfo_Summary}}</div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
-          }
-        </ul>
-      </div>
-      <div class="card-body" [ngClass]="{'d-xl-none': this.current !== 3}">
-        <h3 class="d-xs-block d-xl-none">潜在ライブスキル</h3>
-        <ul class="list-group">
-          @for (item of this.cardInfo.potentialLiveSkillList; track $index) {
-          <li class="list-group-item">
-            <table>
-              <thead></thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <img width="20" height="20" class="img-fluid d-inline-block"
-                      [src]="this.getPotentialSkillIcon(item)" alt>
-                    {{item.mlPotentialLiveSkillText_Title}}
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div>
-                      {{this.getTaglessDescription(item.levelList.at(-1)?.mlPotentialLiveSkillText_Description)}}
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div>各LV</div>
-                    @for (i of this.parsePotentialSkillEffect(item); track $index) {
-                    <div>
-                      @for(j of i; track $index;) {
-                      {{j}}
+        <div class="card-body" [ngClass]="{'d-xl-none': this.current !== 2}">
+          <h3 class="d-xs-block d-xl-none">アイドルイベント</h3>
+          <ul class="list-group">
+            @for (item of this.cardInfo.produceIdolEventList; track $index) {
+            <li class="list-group-item">
+              <table>
+                <thead></thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <h3>{{item.mlADVInfo_Title}}</h3>
+                      <div>{{item.mlADVInfo_Summary}}</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            }
+          </ul>
+        </div>
+        <div class="card-body" [ngClass]="{'d-xl-none': this.current !== 3}">
+          <h3 class="d-xs-block d-xl-none">潜在ライブスキル</h3>
+          <ul class="list-group">
+            @for (item of this.cardInfo.potentialLiveSkillList; track $index) {
+            <li class="list-group-item">
+              <table>
+                <thead></thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <img width="20" height="20" class="img-fluid d-inline-block"
+                        [src]="this.getPotentialSkillIcon(item)" alt>
+                      {{item.mlPotentialLiveSkillText_Title}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div>
+                        {{this.getTaglessDescription(item.levelList.at(-1)?.mlPotentialLiveSkillText_Description)}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div>各LV</div>
+                      @for (i of this.parsePotentialSkillEffect(item); track $index) {
+                      <div>
+                        @for(j of i; track $index;) {
+                        {{j}}
+                        }
+                      </div>
                       }
-                    </div>
-                    }
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
-          }
-        </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            }
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
+}
