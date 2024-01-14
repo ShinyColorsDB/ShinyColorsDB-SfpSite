@@ -50,7 +50,6 @@ export class SInfoComponent implements OnInit {
           return of(null);
         }))
         .subscribe((data) => {
-
           this.cardInfo = data!;
 
           this.title.setTitle(`${this.cardInfo.mlSupportCharaText_Name} ${this.cardInfo.mlCharacterText_Name}`);

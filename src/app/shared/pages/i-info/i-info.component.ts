@@ -63,8 +63,8 @@ export class IInfoComponent implements OnInit {
           return of(null);
         }))
         .subscribe((data) => {
-
           this.idolProfile = data!;
+
           this.title.setTitle(this.idolProfile.char_name);
 
           this.scSfpUtilService.emitActiveIdolUnit(this.idolId);

@@ -55,7 +55,6 @@ export class PInfoComponent implements OnInit {
           return of(null);
         }))
         .subscribe((data) => {
-
           this.cardInfo = data!;
 
           this.title.setTitle(this.cardInfo.mlProduceIdolText_Name);
