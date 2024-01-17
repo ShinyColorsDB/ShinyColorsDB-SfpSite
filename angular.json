@@ -36,7 +36,9 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
             "server": "src/main.server.ts",
-            "prerender": true,
+            "prerender": {
+              "discoverRoutes": false
+            },
             "ssr": {
               "entry": "server.ts"
             }

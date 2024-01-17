@@ -51,7 +51,7 @@ export class ShinyColorsSfpAPIService {
       .get<SfpCharacterBasicInfo>(`${environment.api2Url}album/${idolID}`, {
         responseType: 'json',
       })
-      .pipe(catchError(this.handleError<SfpCharacterBasicInfo>('getIdolProfile')));
+      .pipe(catchError(this.handleError<SfpCharacterBasicInfo>('getIdolProfile', {} as SfpCharacterBasicInfo)));
   }
 
   getIdolCardList(IdolID: number): Observable<CharacterAlbumMetadata> {
@@ -59,15 +59,15 @@ export class ShinyColorsSfpAPIService {
       .get<CharacterAlbumMetadata>(`${environment.api2Url}album/${IdolID}`, {
         responseType: 'json',
       })
-      .pipe(catchError(this.handleError<CharacterAlbumMetadata>('getIdolCardList')));
+      .pipe(catchError(this.handleError<CharacterAlbumMetadata>('getIdolCardList', {} as CharacterAlbumMetadata)));
   }
 
   getProduceInfo(cardId: number): Observable<ProduceIdol> {
     return this.http
-      .get<ProduceIdol>(`${environment.api2Url}produceIdol/${cardId}`, {
+      .get<ProduceIdol>(`${environment.api2Url}produceIdol/${cardId}.json`, {
         responseType: 'json',
       })
-      .pipe(catchError(this.handleError<ProduceIdol>('getProduceInfo')));
+      .pipe(catchError(this.handleError<ProduceIdol>('getProduceInfo', {} as ProduceIdol)));
   }
 
   getSupportInfo(cardId: number): Observable<SupportCharacter> {
@@ -75,6 +75,6 @@ export class ShinyColorsSfpAPIService {
       .get<SupportCharacter>(`${environment.api2Url}supportCharacter/${cardId}`, {
         responseType: 'json',
       })
-      .pipe(catchError(this.handleError<SupportCharacter>('getSupportInfo')));
+      .pipe(catchError(this.handleError<SupportCharacter>('getSupportInfo', {} as SupportCharacter)));
   }
 }
