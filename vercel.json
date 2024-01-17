@@ -8,7 +8,7 @@
   ],
   "functions": {
     "api/index.mjs": {
-      "includeFiles": "dist/ShinyColorsDB-SfpSite/[server|browser]/**"
+      "includeFiles": "dist/ShinyColorsDB-SfpSite/(server|browser)/**"
     }
   }
 }
