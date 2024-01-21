@@ -6,7 +6,7 @@
       <div id="picture" class="w-100 d-flex justify-content-center">
         <img [src]="this.getPictureUrl()" alt class="img-fluid">
       </div>
-      <table class="table table-bordered text-center mt-2">
+      <table class="table table-bordered text-center mt-2 lineGothic">
         <thead></thead>
         <tbody>
           <tr class="row">
@@ -43,7 +43,7 @@
             </li-->
         </ul>
       </div>
-      <div class="card-body" [ngClass]="{'d-xl-none': this.current !== 1}">
+      <div class="card-body lineGothic" [ngClass]="{'d-xl-none': this.current !== 1}">
         <h3 class="d-xs-block d-xl-none">アイドルのスキル</h3>
         <div ngbAccordion [closeOthers]="false">
           @for (item of this.getSortedIdolSkillList(); track $index) {
@@ -90,7 +90,7 @@
           }
         </div>
       </div>
-      <div class="card-body" [ngClass]="{'d-xl-none': this.current !== 2}">
+      <div class="card-body lineGothic" [ngClass]="{'d-xl-none': this.current !== 2}">
         <h3 class="d-xs-block d-xl-none">アイドルイベント</h3>
         <ul class="list-group">
           @for (item of this.cardInfo.produceIdolEventList; track $index) {
@@ -119,26 +119,31 @@
               <thead></thead>
               <tbody>
                 <tr>
-                  <td>
-                    <img width="20" height="20" class="img-fluid d-inline-block"
+                  <th class="h4">
+                    <img width="30" height="30" class="img-fluid d-inline-block"
                       [src]="this.getPotentialSkillIcon(item)" alt>
-                    {{item.mlPotentialLiveSkillText_Title}}
-                  </td>
+                    <strong class="ms-2 align-middle">{{item.mlPotentialLiveSkillText_Title}}</strong>
+                  </th>
                 </tr>
                 <tr>
-                  <td>
-                    <div>
+                  <td class="lineGothic">
+                    <div class="mt-1 mb-1">
                       {{this.getTaglessDescription(item.levelList.at(-1)?.mlPotentialLiveSkillText_Description)}}
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td>
-                    <div>各LV</div>
-                    @for (i of this.parsePotentialSkillEffect(item); track $index) {
+                  <td class="lineGothic">
+                    <div >各LV</div>
+                    @for (i of this.parsePotentialSkillEffect(item) | keyvalue; track $index) {
                     <div>
-                      @for(j of i; track $index;) {
-                      {{j}}
+                      {{i.key}}
+                      @for(j of i.value; track $index) {
+                        @if(!$last) {
+                          <span class="text-muted">{{j}}</span> /
+                        } @else {
+                          <span>{{j}}</span>
+                        }
                       }
                     </div>
                     }

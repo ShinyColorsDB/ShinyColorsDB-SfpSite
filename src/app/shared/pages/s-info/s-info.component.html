@@ -4,7 +4,7 @@
   <div class="col-xl-4 col-sm-12 container row justify-content-center mt-2">
     <div class="col-12 justify-content-center">
       <img [src]="this.getPictureUrl()" width="584" height="328" class="img-fluid">
-      <table class="table table-bordered mt-3">
+      <table class="table table-bordered mt-3 lineGothic">
         <thead></thead>
         <tbody>
           <tr class="row">
@@ -60,6 +60,7 @@
           @for (item of this.cardInfo.supportEffectList; track $index) {
           <li class="list-group-item">
             <table>
+              <thead></thead>
               <tbody>
                 <tr>
                   <th>{{item.mlSupportEffectText_Name}}</th>
@@ -79,6 +80,7 @@
           @for (item of this.cardInfo.potentialSupportSkillList; track $index) {
           <li class="list-group-item">
             <table>
+              <thead></thead>
               <tbody>
                 <tr>
                   <th>{{item.mlPotentialSupportSkillText_Name}}</th>
@@ -98,6 +100,7 @@
           @for (item of this.cardInfo.supportCharacterEventList; track $index) {
           <li class="list-group-item">
             <table>
+              <thead></thead>
               <tbody>
                 <tr>
                   <th>{{item.mlADVInfo_Title}}</th>

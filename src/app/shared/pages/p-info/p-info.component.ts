@@ -13,6 +13,7 @@ import { ShinyColorsSfpMetaService } from '../../../service/shinycolors-sfp-meta
 import { IdolSkillComponent } from '../../components/idol-skill/idol-skill.component';
 
 import { IdolSkill, PotentialLiveSkill, ProduceIdol } from '../../interfaces/common';
+import { LiveSkillType } from '../../interfaces/enum';
 
 @Component({
   selector: 'app-p-info',
@@ -119,24 +120,53 @@ export class PInfoComponent implements OnInit {
     let r = new Map<string, string[]>();
     n.levelList.forEach(e => {
       e.parameterList.forEach(p => {
-        if (r.has(p.liveSkillType)) {
-          if (p?.value) {
-            r.get(p.liveSkillType)!.push(`${p.value!}`);
-          }
-          else {
-            r.get(p.liveSkillType)!.push(`${p.millisecond / 1000}秒`);
-          }
+        const [name, value] = this.potentialTranslate(p.liveSkillType, p.value, p.millisecond);
+        if (r.has(name)) {
+          r.get(name)?.push(value);
         }
         else {
-          if (p?.value) {
-            r.set(p.liveSkillType, [`${p.value!}`]);
-          }
-          else {
-            r.set(p.liveSkillType, [`${p.millisecond / 1000}秒`]);
-          }
+          r.set(name, [value]);
         }
       });
     });
     return r;
+  }
+
+  potentialTranslate(l: LiveSkillType, value: number | undefined, ms: number) {
+    switch (l) {
+      // second
+      case 'judgment_enhancement': // 判定強化
+        return ['判定強化', `${ms / 1000}秒`];
+      case 'perfect_judgment_enhancement': // パーフェクト判定強化
+        return ['パーフェクト判定強化', `${ms / 1000}秒`];
+      case 'invincible': // 無敵化
+        return ['無敵化', `${ms / 1000}秒`];
+
+      // percent
+      case 'combo_bonus': // コンボボーナス
+        return ['コンボボーナス', `${value}%`];
+      case 'idol_base_exp_up': // アイドルLv経験値UP
+        return ['アイドルLv経験値UP', `${value}%`];
+      case 'fan_up': // ファン数UP
+        return ['ファン数UP', `${value}%`];
+      case 'score_up': // スコアUP
+        return ['スコアUP', `${value}%`];
+      case 'perfect_score_up': // パーフェクトスコアUP
+        return ['パーフェクトスコアUP', `${value}%`];
+      case 'long_score_up': // ロングスコアUP
+        return ['ロングスコアUP', `${value}%`];
+      case 'flick_score_up': // フリックスコアUP
+        return ['フリックスコアUP', `${value}%`];
+      case 'money_drop_up': // マニードロップ量UP
+        return ['マニードロップ量UP', `${value}%`];
+      case 'bonus_reward': // おまけ報酬ドロップ
+        return ['おまけ報酬ドロップ', `${value}%`];
+      case 'dearness_up': // 信頼度UP
+        return ['信頼度UP', `${value}%`];
+
+      // raw
+      case 'recovery': // 回復
+        return ['回復', `${value}`];
+    }
   }
 }
