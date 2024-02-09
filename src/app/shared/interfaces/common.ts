@@ -175,6 +175,7 @@ export type ProduceIdol = CharacterInfo & {
 
     mlProduceIdolText_Name: string;
     mlUnitText_Name: string;
+    release_Date: string;
 };
 
 export type ProduceEntrust = {
@@ -225,4 +226,5 @@ export type SupportCharacter = {
     produceEntrust: ProduceEntrust;
 
     mlSupportCharaText_Name: string;
+    release_Date: string;
 } & CharacterInfo;

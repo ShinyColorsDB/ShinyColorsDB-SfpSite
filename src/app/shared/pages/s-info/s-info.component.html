@@ -27,13 +27,13 @@
             <th class="col-4">稀有度</th>
             <td class="col-8">{{this.cardInfo.rarity}}</td>
           </tr>
-          <!--tr class="row">
+          <tr class="row">
             <th class="col-4">リリース</th>
-            <td class="col-8">{{this.getDate(this.cardInfo.createDate.seconds)}}</td>
-          </tr-->
+            <td class="col-8">{{this.cardInfo.release_Date}}</td>
+          </tr>
           <tr class="row">
             <th class="col-4">得意スケジュール</th>
-            <td class="col-8">{{this.cardInfo.goodScheduleDetailType}}</td>
+            <td class="col-8">{{this.scheduleTranslate()}}</td>
           </tr>
         </tbody>
       </table>

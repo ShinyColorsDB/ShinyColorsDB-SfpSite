@@ -81,7 +81,49 @@ export class SInfoComponent implements OnInit {
     return new Array(s);
   }
 
-  getDate(s: string): string {
-    return new Date(Number(s) * 1000).toLocaleDateString('ja-JP', { year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
+  scheduleTranslate(): string {
+    switch (this.cardInfo.goodScheduleDetailType) {
+      case "vocal_training":
+        return "自主練（Vo）";
+      case "dance_training":
+        return "自主練（Da）";
+      case "visual_training":
+        return "自主練（Vi）";
+
+      case "vocal_lesson":
+        return "レッスン（Vo）";
+      case "dance_lesson":
+        return "レッスン（Da）";
+      case "visual_lesson":
+        return "レッスン（Vi）";
+      case "special_lesson":
+        return "スペシャルレッスン";
+
+      case "shopping_boutique":
+        return "買い物（洋服）";
+      case "shopping_cd":
+        return "買い物（CD）";
+      case "shopping_cosmetic":
+        return "買い物（コスメ）";
+      case "shopping_food":
+        return "買い物（食べ物）";
+
+      case "working_radio":
+        return "お仕事（ラジオ出演）";
+      case "working_tv":
+        return "お仕事（テレビ出演）";
+      case "working_model":
+        return "お仕事（撮影モデル）";
+      case "working_paper":
+        return "お仕事（雑誌取材）";
+      case "working_cm":
+        return "お仕事（CM出演）";
+
+      case "rest":
+        return "オフ";
+
+      default:
+        return "";
+    }
   }
 }
